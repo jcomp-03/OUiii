@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { User, Party, Theme } = require('../../models');
+// Import the custom middleware
 // const withAuth = require('../../utils/auth');
 
 /**** Not clear yet which routes might actually be needed ****/
