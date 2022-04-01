@@ -1,15 +1,15 @@
 const router = require('express').Router();
 const { User, Party, Theme } = require('../../models');
 // Import the custom middleware
-// const withAuth = require('../../utils/auth');
+const withAuth = require('../../utils/auth');
 
 /**** Not clear yet which routes might actually be needed ****/
 
 // GET /api/users
-router.get('/', async (req, res) => {
+router.get('/', (req, res) => {
     // Access our User model and run .findAll() method
     User.findAll({
-      // attributes: { exclude: ['password'] }
+      attributes: { exclude: ['password'] }
     })
       .then(dbUserData => res.json(dbUserData))
       .catch(err => {
@@ -19,9 +19,9 @@ router.get('/', async (req, res) => {
 });
 
 // GET /api/users/1
-router.get('/:id', async (req, res) => {
+router.get('/:id', (req, res) => {
   User.findOne({
-    // attributes: { exclude: ['password'] },
+    attributes: { exclude: ['password'] },
     where: {
       id: req.params.id
     },
@@ -50,7 +50,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST /api/users
-router.post('/', async (req, res) => {
+router.post('/', (req, res) => {
     User.create({
       firstname: req.body.firstname, 
       lastname: req.body.lastname,
@@ -82,8 +82,9 @@ router.post('/', async (req, res) => {
 });
 
 // POST /api/users/login, for authenticating login
-router.post('/login', async (req, res) => {
+router.post('/login', (req, res) => {
     User.findOne({
+      attributes: { exclude: ['age', 'address', 'lat', 'long']},
       where: {
         email: req.body.email
       }
@@ -92,27 +93,30 @@ router.post('/login', async (req, res) => {
         res.status(400).json({  message: 'Incorrect email or password. Please try again!' });
         return;
       }
-  
-      // Verify user
-      const validPassword = await dbUserData.checkPassword(req.body.password);
+
+      // Verify user login password to stored hashed password
+      const validPassword = dbUserData.checkPassword(req.body.password);
       if (!validPassword) {
         res.status(400).json({ message: 'Incorrect password!' });
         return;
       }
       
-      req.session.save(() => {
-        // declare session variables
-        req.session.user_id = dbUserData.id;
-        req.session.username = dbUserData.username;
-        req.session.loggedIn = true;
-        // if entered password matches hashed password, send back the following
-        res.json({ user: dbUserData, message: 'You are now logged in!' });
-      });
+      // delete this res.json once you uncomment req.session.save below
+      res.json({ user: dbUserData, message: 'You are now logged in!' });
+      
+      // req.session.save(() => {
+      //   // declare session variables
+      //   req.session.user_id = dbUserData.id;
+      //   req.session.username = dbUserData.username;
+      //   req.session.loggedIn = true;
+      //   // if entered password matches hashed password, send back the following
+      //   res.json({ user: dbUserData, message: 'You are now logged in!' });
+      // });
     });  
 });
 
 // POST /api/users/logout, terminating session
-router.post('/logout', async (req, res) => {
+router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -124,13 +128,13 @@ router.post('/logout', async (req, res) => {
 })
 
 // PUT /api/users/1
-router.put('/:id', async (req, res) => {
+router.put('/:id', (req, res) => {
     // if req.body has exact key/value pairs to match the model, you can just use `req.body` instead
     // This .update() method combines the parameters for creating data and looking up data.
     // We pass in req.body to provide the new data we want to use in the update and req.params.id
     // to indicate where exactly we want that new data to be stored.
     User.update(req.body, {
-      // individualHooks: true,
+      individualHooks: true,
       where: {
         id: req.params.id
       }
@@ -149,7 +153,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE /api/users/1
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', (req, res) => {
     let uname;
     let uid = req.params.id;
 

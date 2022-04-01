@@ -3,6 +3,7 @@ const { Party } = require('../models');
 const partydata = [
   {
     startdate: '2022-04-10',
+    title:'Tailgate 4everrr',
     ispublic: true,
     isover21: true,
     user_id: 1,
@@ -10,6 +11,7 @@ const partydata = [
   },
   {
     startdate: '2022-05-23',
+    title: 'Bring your black tie!',
     ispublic: false,
     isover21: true,
     user_id: 4,
@@ -17,7 +19,8 @@ const partydata = [
   },
   {
     startdate: '2022-04-18',
-    ispublic: true,
+    title: 'Let\'s get fancy!!!',
+    ispublic: false,
     isover21: true,
     user_id: 1,
     theme_id: 4
