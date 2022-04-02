@@ -1,12 +1,13 @@
-const getGeoCoordinates = require('./getGeoCoordinates');
+// const getGeoCoordinates = require('/js/getGeoCoordinates');
 
 async function loginFormHandler(event) {
   event.preventDefault();
   // We need to POST the email, and password from the
   // form to our server, so go ahead and grab the data 
-  // from the form. 
-  const email = document.getElementById('#email-login').value.trim();
-  const password = document.getElementById('#password-login').value.trim();
+  // from the form.
+  console.log('inside loginFormHandler');
+  const email = document.getElementById('email-login').value.trim();
+  const password = document.getElementById('password-login').value.trim();
   // Once we have the email and password, make a 
   // fetch() POST request to the /api/users/logins
   // make sure all fields have values
@@ -33,22 +34,24 @@ async function signupFormHandler(event){
   // We need to POST first name, last name, email, age, & address
   // going from our sign-up form to the server. Here we grab the data from
   // our form
-  const firstName = document.getElementById('firstname-signup').value.trim();
-  const lastName = document.getElementById('lastname-signup').value.trim();
+  console.log('inside signupFormHandler function');
+  const firstname = document.getElementById('firstname-signup').value.trim();
+  const lastname = document.getElementById('lastname-signup').value.trim();
   const email = document.getElementById('email-signup').value.trim();
   const age = document.getElementById('age-signup').value.trim();
   const address = document.getElementById('address-signup').value.trim();
   const password = document.getElementById('password-signup').value.trim();
 
   // run the function getGeoCoordinates and pass it the address value
-  const coordObject = await getGeoCoordinates(address);
-  console.log('coordObject is', coordObject);
-  const lat = coordObject.lat;
-  const long = coordObject.long;
+  // const coordObject = await getGeoCoordinates(address);
+  // console.log('coordObject is', coordObject);
+  // const lat = coordObject.lat;
+  // const long = coordObject.long;
   
+  // 8800 SW 72nd St, Miami, FL 33173
   // Make a fetch() POST request to the /api/users/ endpoint
   // make sure all fields have values
-  if(firstName && lastName && email && age & address & password){
+  if(firstname && lastname && email && age && address && password){
       const response = await fetch('/api/users', {
           method: 'post',
           body: JSON.stringify({
@@ -57,30 +60,28 @@ async function signupFormHandler(event){
             email,
             age,
             address,
-            password,
-            lat,
-            long
+            password
           }),
           headers: { 'Content-Type': 'application/json' }
       });
 
       if (response.ok) {
-        document.location.replace('/');
+        document.location.replace('/dashboard');
       } else {
         alert('Failed to sign up.');
       }
 
-      // check the response status
-      // if(response.ok) {
-      //     console.log(`Success! User has been created successfully!`);
-      // } else {
-      //     alert(response.statusText);
-      // }
+      //check the response status
+      if(response.ok) {
+          console.log(`Success! User has been created successfully!`);
+      } else {
+          alert(response.statusText);
+      }
   }
 }
 
-document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
-document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
+document.getElementById('loginSubmitBtn').addEventListener('click', loginFormHandler);
+document.getElementById('signUpSubmitBtn').addEventListener('click', signupFormHandler);
 
 
 /* async function getGeoCoordinates(address){
