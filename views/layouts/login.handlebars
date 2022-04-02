@@ -1,0 +1,49 @@
+<form class="login-form">
+  <div>
+    <label for="email-login">email:</label>
+    <input type="text" id="email-login" />
+  </div>
+  <div>
+    <label for="password-login">password:</label>
+    <input type="password" id="password-login" />
+  </div>
+  <div>
+    <button id="login-form" type="submit">login</button>
+  </div>
+</form>
+
+<form class="signup-form">
+  <div>
+    <label for="name-signup">Enter full name:</label>
+    <input type="text" placeholder="Your Name" name="name" id="name" class="form-input" />
+  </div>
+  <div>
+    <label for="home-address">home address:</label>
+    <input type="text" id="location" />
+  </div>
+  <div>
+    <label for="email-signup">email:</label>
+    <input type="text" id="email-signup" />
+  </div>
+  <div>
+    <label for="age-signup">DOB:</label>
+    <form class="container">
+      <select id="year" name="yyyy" onchange="change_year(this)">
+      </select>
+      <select id="month" name="mm" onchange="change_month(this)">
+      </select>
+      <select id="day" name="dd">
+      </select>
+    </form>
+  </div>
+  <div>
+    <label for="password-signup">password:</label>
+    <input type="password" id="password-signup" />
+  </div>
+  <div>
+    <button id="submit-form" type="submit">signup</button>
+  </div>
+</form>
+. . .
+</form>
+<script src="/javascript/login.js"></script>
