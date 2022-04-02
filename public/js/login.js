@@ -20,12 +20,6 @@ async function loginFormHandler(event) {
       headers: { 'Content-Type': 'application/json' }
     });
 
-    // if (response.ok) {
-    //   document.location.replace('/');
-    // } else {
-    //   alert('Failed to log in.');
-    // }
-
     if (response.ok) {
       document.location.replace('/dashboard');
     } else {
@@ -87,7 +81,6 @@ async function signupFormHandler(event){
 
 document.querySelector('.login-form').addEventListener('submit', loginFormHandler);
 document.querySelector('.signup-form').addEventListener('submit', signupFormHandler);
-
 
 
 /* async function getGeoCoordinates(address){

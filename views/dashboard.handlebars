@@ -1,0 +1,51 @@
+<div class="row min-vh-100 no-gutters">
+  <header id="main-dashboard" class="col-12 col-lg-3 rounded sticky-top d-flex flex-column p-4 p-lg-3">
+    <h1 class="text-center">dashboard</h1>
+    <nav>
+      <ul>
+        <!-- {{#if loggedIn}} -->
+        <li>Search for Parties</li>
+        <!-- <select id="search-distance" class="distance-menu"></select> -->
+
+        <form>
+
+          <p>Over 21:</p>
+          <input type="radio" name="age-confirm" id="21-true" />
+          <label for="21-true">Yes</label>
+          <input type="radio" name="age-confirm" id="21-false" />
+          <label for="21-false">No</label>
+
+
+          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+            <option selected>Pick a party theme:</option>
+            <option value="costume">costume</option>
+            <option value="kegger">kegger</option>
+            <option value="tailgate">tailgate</option>
+            <option value="fancy cocktails">fancy cocktails</option>
+            <option value="dinner">dinner</option>
+          </select>
+
+        </form>
+        <li>
+          <a href="/create-party.handlebars">Create a Party</a>
+        </li>
+        <li>
+          <a href="/my-parties.handlebars">My Parties</a>
+        </li>
+
+        <!-- {{!-- <a href="/dashboard">dashboard</a> this will have to link to some other page, not dashboard assuming we
+          allow users not logged in to browse the dashboard --}} -->
+        <li>
+          <button id="logout" class="btn-no-style">logout</button>
+          <!-- {{else}} -->
+          <a href="/login">login</a>
+          <!-- {{/if}} -->
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main class="col-12 col-lg-9 d-flex flex-column">
+    <!-- {{{body}}}
+      {{!-- Handlebars for Party Card which will have to be clickable to expand into larger view --}} -->
+  </main>
+</div>
