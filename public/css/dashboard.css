@@ -1,0 +1,26 @@
+* {
+    font-family: 'Fredoka One', cursive;
+    color: #472352;
+}
+
+header h1 {
+    font-size: 30px;
+    color: #472352;
+    border-bottom: 2px solid #472352;
+}
+
+#main-dashboard {
+    background-color: #EEE6E6;
+}
+
+header nav ul li {
+    justify-content: space-between;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    list-style: none;
+}
+
+header a {
+    color: #472352;
+    text-decoration: none;
+}

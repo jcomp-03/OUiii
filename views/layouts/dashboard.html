@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Fredoka+One&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../public/css/dashboard.css" />
+  <title>GETParty!</title>
+</head>
+
+<body>
+  <div class="row min-vh-100 no-gutters">
+    <header id="main-dashboard" class="col-12 col-lg-3 rounded sticky-top d-flex flex-column p-4 p-lg-3">
+      <h1 class="text-center">dashboard</h1>
+      <nav>
+        <ul>
+          <!-- {{#if loggedIn}} -->
+          <li>Search for Parties</li>
+          <!-- <select id="search-distance" class="distance-menu"></select> -->
+
+          <form>
+            
+              <p>Over 21:</p>
+              <input type="radio" name="age-confirm" id="21-true" />
+              <label for="21-true">Yes</label>
+              <input type="radio" name="age-confirm" id="21-false" />
+              <label for="21-false">No</label>
+            
+            
+              <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option selected>Pick a party theme:</option>
+                <option value="costume">costume</option>
+                <option value="kegger">kegger</option>
+                <option value="tailgate">tailgate</option>
+                <option value="fancy cocktails">fancy cocktails</option>
+                <option value="dinner">dinner</option>
+              </select>
+            
+          </form>
+          <li>
+            <a href="/create-party.handlebars">Create a Party</a>
+          </li>
+          <li>
+            <a href="/my-parties.handlebars">My Parties</a>
+          </li>
+
+          <!-- {{!-- <a href="/dashboard">dashboard</a> this will have to link to some other page, not dashboard assuming we
+          allow users not logged in to browse the dashboard --}} -->
+          <li>
+            <button id="logout" class="btn-no-style">logout</button>
+            <!-- {{else}} -->
+            <a href="/login">login</a>
+            <!-- {{/if}} -->
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="col-12 col-lg-9 d-flex flex-column">
+      <!-- {{{body}}}
+      {{!-- Handlebars for Party Card which will have to be clickable to expand into larger view --}} -->
+    </main>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <!-- {{#if loggedIn}} --}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}} -->
+</body>
+
+</html>

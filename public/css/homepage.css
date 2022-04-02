@@ -1,0 +1,53 @@
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+
+header {
+    padding: 20px 35px;
+    display: flex;
+    background-color: #472352;
+    justify-content: space-between;
+    margin-bottom: 5px;    
+}
+
+header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 68px;
+    display: inline-flex;
+    color: #FAC710;
+    margin: 0;
+}
+
+#hero-frame img {
+    max-width: 100%;
+    display: flex;
+    margin-bottom: 2.5rem;
+}
+
+#hero {
+    background-size: cover;
+    position: fixed;
+    background-position: 50% 50%;
+    max-width: 100%;
+    display: -webkit-inline-flex;
+    justify-content: center;
+}
+
+footer {
+    background: #472352;
+    display: flex;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+    padding: 40px 35px;
+    justify-content: space-between;    
+}
+
+.enter-btn {
+    font-family: 'Fredoka One', cursive;
+    font-size: 32px;
+    background: #FAC710;
+    color: #472352;
+}

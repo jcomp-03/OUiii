@@ -1,0 +1,25 @@
+<div class="m-5 row justify-content-around">
+  <div class="col-12 col-md-6 col-xl-3 mb-3">
+    <div class="card">
+      <h4 class="card-header bg-dark text-light">
+        {{!-- Handlebar for Party Title --}}
+        "{{title}}"
+      </h4>
+      <ul id="party-card" class="list-group list-group-flush">
+        {{id}} {{startdate}} {{theme_id}} {{user_id}} {{isover21}} 
+        {{!-- Handlebar for Party Info --}}
+      </ul>
+    </div>
+</div>
+
+{{!-- <article class="post">
+    <div class="title">
+      <a href="{{post_url}}" target="_blank">{{title}}</a>
+      <span>({{format_url post_url}})</span>
+    </div>
+    <div class="meta">
+      {{vote_count}} {{format_plural "point" vote_count}} by {{user.username}} on {{format_date created_at}}
+      |
+      <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+    </div>
+</article> --}}
