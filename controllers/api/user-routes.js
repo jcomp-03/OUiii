@@ -50,6 +50,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST /api/users
+// This route is during execution of signupFormHandler in login.js script
 router.post('/', (req, res) => {
     User.create({
       firstname: req.body.firstname, 
@@ -62,18 +63,16 @@ router.post('/', (req, res) => {
       long: req.body.long
     })
     .then(dbUserData => {
-      res.json(dbUserData);
-      // We want to make sure the session is created before
-      // we send the response back, so we're wrapping the
-      // variables in a callback. The req.session.save() method
-      // will initiate the creation of the session and then run
-      // the callback function once complete.
-      // req.session.save(() => {
-      //   req.session.user_id = dbUserData.id;
-      //   req.session.username = dbUserData.username;
-      //   req.session.loggedIn = true;
-      //   res.json(dbUserData);
-      // });
+      // accessing the session information in the routes
+      // This gives our server easy access to the user's user_id,
+      // email, and a Boolean describing whether or not the user is logged in.
+      req.session.save(() => {
+        req.session.user_id = dbUserData.id;
+        req.session.email = dbUserData.email;
+        req.session.loggedIn = true;
+        
+        res.json(dbUserData);
+      });
     })
     .catch(err => {
         console.log(err);
@@ -82,6 +81,7 @@ router.post('/', (req, res) => {
 });
 
 // POST /api/users/login, for authenticating login
+// This route is during execution of loginFormHandler in login.js script
 router.post('/login', (req, res) => {
     User.findOne({
       attributes: { exclude: ['age', 'address', 'lat', 'long']},
@@ -102,16 +102,18 @@ router.post('/login', (req, res) => {
       }
       
       // delete this res.json once you uncomment req.session.save below
-      res.json({ user: dbUserData, message: 'You are now logged in!' });
+      // res.json({ user: dbUserData, message: 'You are now logged in!' });
       
-      // req.session.save(() => {
-      //   // declare session variables
-      //   req.session.user_id = dbUserData.id;
-      //   req.session.username = dbUserData.username;
-      //   req.session.loggedIn = true;
-      //   // if entered password matches hashed password, send back the following
-      //   res.json({ user: dbUserData, message: 'You are now logged in!' });
-      // });
+      req.session.save(() => {
+        // accessing the session information in the routes
+        // This gives our server easy access to the user's user_id,
+        // email, and a Boolean describing whether or not the user is logged in.
+        req.session.user_id = dbUserData.id;
+        req.session.email = dbUserData.email;
+        req.session.loggedIn = true;
+        // if entered password matches hashed password, send back the following
+        res.json({ user: dbUserData, message: 'You are now logged in!' });
+      });
     });  
 });
 

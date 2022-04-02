@@ -14,27 +14,24 @@
 
 <form class="signup-form">
   <div>
-    <label for="name-signup">Enter full name:</label>
-    <input type="text" placeholder="Your Name" name="name" id="name" class="form-input" />
+    <label for="firstname-signup">Enter first name:</label>
+    <input type="text" placeholder="First name" name="firstName" id="firstname-signup" class="form-input" />
   </div>
   <div>
-    <label for="home-address">home address:</label>
-    <input type="text" id="location" />
+    <label for="lastname-signup">Enter last name:</label>
+    <input type="text" placeholder="Last name" name="lastName" id="lastname-signup" class="form-input" />
   </div>
   <div>
     <label for="email-signup">email:</label>
     <input type="text" id="email-signup" />
   </div>
   <div>
-    <label for="age-signup">DOB:</label>
-    <form class="container">
-      <select id="year" name="yyyy" onchange="change_year(this)">
-      </select>
-      <select id="month" name="mm" onchange="change_month(this)">
-      </select>
-      <select id="day" name="dd">
-      </select>
-    </form>
+    <label for="age-signup">age:</label>
+    <input type="integer" id="age-signup" />
+  </div>
+  <div>
+    <label for="address-signup">home address:</label>
+    <input type="text" id="address-signup" />
   </div>
   <div>
     <label for="password-signup">password:</label>
@@ -44,6 +41,6 @@
     <button id="submit-form" type="submit">signup</button>
   </div>
 </form>
-. . .
-</form>
+
+
 <script src="/javascript/login.js"></script>
