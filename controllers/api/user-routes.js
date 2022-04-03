@@ -50,7 +50,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST /api/users
-// This route is during execution of signupFormHandler in login.js script
+// This route is used during execution of signupFormHandler in login.js script
 router.post('/', (req, res) => {
     User.create({
       firstname: req.body.firstname, 
@@ -81,7 +81,7 @@ router.post('/', (req, res) => {
 });
 
 // POST /api/users/login, for authenticating login
-// This route is during execution of loginFormHandler in login.js script
+// This route is used during execution of loginFormHandler in login.js script
 router.post('/login', (req, res) => {
     User.findOne({
       attributes: { exclude: ['age', 'address', 'lat', 'long']},
