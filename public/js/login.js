@@ -81,6 +81,6 @@ async function signupFormHandler(event){
   }
 }
 
-document.getElementById('loginSubmitBtn').addEventListener('click', loginFormHandler);
-document.getElementById('signUpSubmitBtn').addEventListener('click', signupFormHandler);
+document.getElementById('login-form').addEventListener('click', loginFormHandler);
+document.getElementById('submit-form').addEventListener('click', signupFormHandler);
 

@@ -1,45 +1,52 @@
+{{>title}}
+
 <form class="login-form">
-  <div>
+  <div class="container is-fluid mb-4">
     <label for="email-login">email:</label>
-    <input type="text" id="email-login" />
+    <input class="input is-rounded m-1" type="text" id="email-login" />
   </div>
-  <div>
+  <div class="container is-fluid mb-4">
     <label for="password-login">password:</label>
-    <input type="password" id="password-login" />
+    <input class="input is-rounded m-1" type="text" id="password-login" />
   </div>
-  <div>
-    <button id="loginSubmitBtn" type="submit">login</button>
+  <div class="container is-fluid mb-4">
+    <button class="button is-link is-rounded" id="login-form" type="submit">login</button>
   </div>
 </form>
 
 <form class="signup-form">
-  <div>
-    <label for="firstname-signup">Enter first name:</label>
-    <input type="text" placeholder="First name" name="firstname-signup" id="firstname-signup" class="form-input" />
+  <div class="container is-fluid mb-4">
+    <label for="first-name-signup">First Name:</label>
+    <input class="input is-rounded m-1" type="text" placeholder="First Name" id="first-name-signup" />
   </div>
-  <div>
-    <label for="lastname-signup">Enter last name:</label>
-    <input type="text" placeholder="Last name" name="lastname-signup" id="lastname-signup" class="form-input" />
+  <div class="container is-fluid mb-4">
+    <label for="last-name-signup">Last Name:</label>
+    <input class="input is-rounded m-1" type="text" placeholder="Last Name" id="last-name-signup" />
   </div>
-  <div>
+  <div class="container is-fluid mb-4">
+    <label for="home-address">home address:</label>
+    <input class="input is-rounded m-1" type="text" id="location" />
+  </div>
+  <div class="container is-fluid mb-4">
     <label for="email-signup">email:</label>
-    <input type="text" id="email-signup" />
+    <input class="input is-rounded m-1" type="text" id="email-signup" />
   </div>
-  <div>
+  <div class="container is-fluid mb-4">
     <label for="age-signup">age:</label>
-    <input type="integer" id="age-signup" />
+    <input class="input is-rounded m-1" type="text" id="age-signup" />
   </div>
-  <div>
-    <label for="address-signup">home address:</label>
-    <input type="text" id="address-signup" />
-  </div>
-  <div>
+  <div class="container is-fluid mb-4">
     <label for="password-signup">password:</label>
-    <input type="password" id="password-signup" />
+    <input class="input is-rounded m-1" type="password" id="password-signup" />
   </div>
-  <div>
-    <button id="signUpSubmitBtn" type="submit">signup</button>
+  <div class="container is-fluid mb-4">
+    <button class="button is-link is-rounded" id="submit-form" type="submit">signup</button>
   </div>
 </form>
+. . .
+</form>
+<script src="/javascript/login.js"></script>
+2:59
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 
 <script src="/js/login.js"></script>

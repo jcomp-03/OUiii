@@ -1,20 +1,18 @@
+{{>title}}
 <div class="row min-vh-100 no-gutters">
   <header id="main-dashboard" class="col-12 col-lg-3 rounded sticky-top d-flex flex-column p-4 p-lg-3">
     <h1 class="text-center">dashboard</h1>
     <nav>
       <ul>
-        <!-- {{#if loggedIn}} -->
+        {{#if loggedIn}}
         <li>Search for Parties</li>
         <!-- <select id="search-distance" class="distance-menu"></select> -->
-
         <form>
-
-          <p>Over 21:</p>
+          <p style="color:white;">Over 21:</p>
           <input type="radio" name="age-confirm" id="21-true" />
           <label for="21-true">Yes</label>
           <input type="radio" name="age-confirm" id="21-false" />
           <label for="21-false">No</label>
-
 
           <select class="form-select form-select-sm" aria-label=".form-select-sm example">
             <option selected>Pick a party theme:</option>
@@ -27,10 +25,10 @@
 
         </form>
         <li>
-          <a href="/create-party.handlebars">Create a Party</a>
+          <a href="./partials/create-party.handlebars">Create a Party</a>
         </li>
         <li>
-          <a href="/my-parties.handlebars">My Parties</a>
+          <a href="./partials/my-parties.handlebars">My Parties</a>
         </li>
 
         <!-- {{!-- <a href="/dashboard">dashboard</a> this will have to link to some other page, not dashboard assuming we
@@ -39,7 +37,7 @@
           <button id="logout" class="btn-no-style">logout</button>
           <!-- {{else}} -->
           <a href="/login">login</a>
-          <!-- {{/if}} -->
+          {{/if}}
         </li>
       </ul>
     </nav>
@@ -49,3 +47,4 @@
       {{!-- Handlebars for Party Card which will have to be clickable to expand into larger view --}} -->
   </main>
 </div>
+{{>footer}}

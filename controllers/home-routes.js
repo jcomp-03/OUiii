@@ -5,27 +5,28 @@ const withAuth = require('../utils/auth');
 
 // GET homepage
 router.get('/', async (req, res) => {
+  console.log('**************** inside home-routes/ ***************');
   res.render('homepage', { loggedIn: req.session.loggedIn} );
 });
 
 // In /login route, check if user is logged in and redirect to the dashboard if true
 // otherwise render the /login page for user to enter credentials
 router.get('/login', (req, res) => {
-  console.log('inside home-routes/login');
+  console.log('**************** inside home-routes/login ***************');
   console.log('req.session.loggedIn value is', req.session.loggedIn);
+  
   if (req.session.loggedIn) {
     res.redirect('dashboard');
-    // res.send('Hi, you reached /login route inside home-routes.js');
-    // res.render('dashboard');
     return;
   }
+
   res.render('login', { loggedIn: req.session.loggedIn });
 });
 
 router.get('/dashboard', (req, res) => {
-
-  console.log('inside home-routes/dashboard');
+  console.log('**************** inside home-routes/dashboard ***************');
   console.log('req.session.loggedIn value is', req.session.loggedIn);
+  
   if (req.session.loggedIn) {
     res.render('dashboard', { loggedIn: req.session.loggedIn} );
     return;
