@@ -3,10 +3,37 @@ const { User, Party, Theme } = require('../models');
 // Import the custom middleware
 const withAuth = require('../utils/auth');
 
-// GET all galleries for homepage
+// GET homepage
 router.get('/', async (req, res) => {
-  res.render('homepage');
+  res.render('homepage', { loggedIn: req.session.loggedIn} );
 });
+
+// In /login route, check if user is logged in and redirect to the dashboard if true
+// otherwise render the /login page for user to enter credentials
+router.get('/login', (req, res) => {
+  console.log('inside home-routes/login');
+  console.log('req.session.loggedIn value is', req.session.loggedIn);
+  if (req.session.loggedIn) {
+    res.redirect('dashboard');
+    // res.send('Hi, you reached /login route inside home-routes.js');
+    // res.render('dashboard');
+    return;
+  }
+  res.render('login', { loggedIn: req.session.loggedIn });
+});
+
+router.get('/dashboard', (req, res) => {
+
+  console.log('inside home-routes/dashboard');
+  console.log('req.session.loggedIn value is', req.session.loggedIn);
+  if (req.session.loggedIn) {
+    res.render('dashboard', { loggedIn: req.session.loggedIn} );
+    return;
+  }
+
+  res.redirect('login');
+});
+
 
 // GET one gallery
 // Use the custom middleware before allowing the user to access the gallery
@@ -49,17 +76,6 @@ router.get('/painting/:id', withAuth, async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
-});
-
-// In the login/ route in home-routes.js, check for a session and
-// redirect to the homepage if one exists by adding the following code:
-router.get('/login', (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect('/'); // this is redirecting to the homepage
-    return;
-  }
-
-  res.render('login');
 });
 
 module.exports = router;
