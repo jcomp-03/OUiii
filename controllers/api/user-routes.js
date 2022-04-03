@@ -156,7 +156,8 @@ router.put('/:id', (req, res) => {
 
 // DELETE /api/users/1
 router.delete('/:id', (req, res) => {
-    let uname;
+    // let firstname = null;
+    // let lastname = null;
     let uid = req.params.id;
 
     User.findOne({
@@ -166,8 +167,10 @@ router.delete('/:id', (req, res) => {
       }
     })
     .then(dbUserData => {
-      uname = dbUserData.dataValues.username;
-    });     
+      // let { dataValues } = dbUserData;
+      // firstname = dataValues.firstname;
+      // lastname = dataValues.lastname;
+    });   
 
     User.destroy({
       where: {
@@ -179,7 +182,7 @@ router.delete('/:id', (req, res) => {
           res.status(404).json({ message: 'No user found with this id' });
           return;
         }
-        res.json(`User ${uname} with id ${uid} has been deleted.`);
+        res.json(`User with id ${uid} has been deleted.`);
     })
     .catch(err => {
         console.log(err);
