@@ -1,1 +1,15 @@
 {{!-- HTML to iterate over all of users parties searched and created --}}
+<h1>This is the my-parties</h1>
+
+{{#each party }}
+<div class="m-5 row justify-content-around">
+  <div class="col-12 col-md-6 col-xl-3 mb-3">
+    <div class="card">
+      <h4 class="card-header bg-dark text-light">
+        {{title}}
+      </h4>
+      <ul id="party-card" class="list-group list-group-flush">
+        {{id}} {{startdate}} {{theme_id}} {{user_id}} {{isover21}} 
+      </ul>
+    </div>
+</div>

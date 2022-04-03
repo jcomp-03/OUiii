@@ -1,10 +1,8 @@
-{{>title}}
 <div class="row min-vh-100 no-gutters">
   <header id="main-dashboard" class="col-12 col-lg-3 rounded sticky-top d-flex flex-column p-4 p-lg-3">
     <h1 class="text-center">dashboard</h1>
     <nav>
       <ul>
-        {{#if loggedIn}}
         <li>Search for Parties</li>
         <!-- <select id="search-distance" class="distance-menu"></select> -->
         <form>
@@ -30,21 +28,16 @@
         <li>
           <a href="./partials/my-parties.handlebars">My Parties</a>
         </li>
-
-        <!-- {{!-- <a href="/dashboard">dashboard</a> this will have to link to some other page, not dashboard assuming we
-          allow users not logged in to browse the dashboard --}} -->
         <li>
-          <button id="logout" class="btn-no-style">logout</button>
-          <!-- {{else}} -->
-          <a href="/login">login</a>
-          {{/if}}
+          <button id="logoutBtn" class="btn-no-style">logout</button>
         </li>
       </ul>
     </nav>
   </header>
+
   <main class="col-12 col-lg-9 d-flex flex-column">
-    <!-- {{{body}}}
-      {{!-- Handlebars for Party Card which will have to be clickable to expand into larger view --}} -->
+
+    {{my-parties}}
+
   </main>
 </div>
-{{>footer}}

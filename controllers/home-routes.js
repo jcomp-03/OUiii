@@ -27,12 +27,47 @@ router.get('/dashboard', (req, res) => {
   console.log('**************** inside home-routes/dashboard ***************');
   console.log('req.session.loggedIn value is', req.session.loggedIn);
   
-  if (req.session.loggedIn) {
+  try {
+    const dbUserData = await User.findOne({
+      where: {
+        email: req.session.email
+      }
+    })
+    
+    console.log('dbUserData is', dbUserData);
+
+
+    const dbPartyData = await Party.findAll({
+      where: {
+        email: 
+      }
+      include: [
+        {
+          model: Painting,
+          attributes: ['filename', 'description'],
+        },
+      ],
+    });
+
+    const galleries = dbPartyData.map((gallery) =>
+      gallery.get({ plain: true })
+    );
+
+    res.render('homepage', {
+      galleries,
+      loggedIn: req.session.loggedIn,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+
+/*   if (req.session.loggedIn) {
     res.render('dashboard', { loggedIn: req.session.loggedIn} );
     return;
   }
 
-  res.redirect('login');
+  res.redirect('login'); */
 });
 
 

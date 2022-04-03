@@ -88,22 +88,18 @@ router.post('/login', (req, res) => {
       where: {
         email: req.body.email
       }
-    }).then(dbUserData => {
+    })
+    .then(dbUserData => {
       if (!dbUserData) {
         res.status(400).json({  message: 'Incorrect email or password. Please try again!' });
         return;
       }
-
       // Verify user login password to stored hashed password
       const validPassword = dbUserData.checkPassword(req.body.password);
       if (!validPassword) {
         res.status(400).json({ message: 'Incorrect password!' });
         return;
       }
-      
-      // delete this res.json once you uncomment req.session.save below
-      // res.json({ user: dbUserData, message: 'You are now logged in!' });
-      
       req.session.save(() => {
         // accessing the session information in the routes
         // This gives our server easy access to the user's user_id,
