@@ -33,9 +33,7 @@
                 <li>
                     <a href="#" class="my-parties">My Parties</a>
                 </li>
-                <li>
-                    <a href="#">Logout</button>
-                </li>
+                <button class="button is-link is-rounded" id="logoutBtn" type="submit">Logout</button>
             </ul>
         </div>
     </navbar>
@@ -145,8 +143,12 @@
         <!-- Tiles for Parties Added Here.  Will be moved to Partials files once completed --->
 
         <div class="container is-fluid">
-            <div class="tile is-ancestor">
+            
+            {{> my-parties}}
+
+{{!--             <div class="tile is-ancestor">
                 <div class="tile is-4 is-vertical is-parent">
+                    
                     <div class="tile is-child box">
                         <p class="title">Party 1</p>
                         <h2>Date/Time</h2>
@@ -162,6 +164,7 @@
                         </ul>
                     </div>
                 </div>
+
                 <div class="tile is-parent">
                     <div class="tile is-child box">
                         <p class="title">Party 3</p>
@@ -169,11 +172,13 @@
                         <ul>
                         </ul>
                     </div>
-                </div>
-            </div>
+                </div> 
+            </div> --}}
+
         </div>
     </main>
     <script src="/js/dashboard.js"></script>
+    <script src="/js/logout.js"></script>
 </body>
 
 </html>

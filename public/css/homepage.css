@@ -1,8 +1,9 @@
-
-#page-container {
-    position: relative;
-    min-height: 100vh;
-  }
+/* ZERO OUT ANY USER-AGENT-ASSIGNED MARGINS, PADDINGS, ETC. */ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 header {
     padding: 20px 35px;
