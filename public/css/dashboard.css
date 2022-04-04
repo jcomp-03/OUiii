@@ -1,4 +1,4 @@
-* {
+/* * {
     font-family: 'Fredoka One', cursive;
     color: #472352;
 }
@@ -23,4 +23,158 @@ header nav ul li {
 header a {
     color: #472352;
     text-decoration: none;
+} */
+
+
+* {
+    box-sizing: border-box;
+    font-family: 'Fredoka One', cursive;
+    color: #472352;
 }
+
+body {
+    margin: 3px;
+    padding: 3px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #EEE6E6;
+    color: #472353;
+    box-shadow: 0px 0px 5px #cfd8dc;
+}
+
+.app-title {
+    font-size: 1.5rem;
+    margin: 1rem;
+}
+
+.navbar-links ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar-links li {
+    list-style: none;
+}
+
+.navbar-links li a {
+    text-decoration: none;
+    color: #472353;
+    padding: 1rem;
+    display: block;
+}
+
+.nav-list {
+    background: #EEE6E6;
+    margin: 0;
+    padding: 1rem 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-list li a {
+    text-decoration: none;
+    padding: 1rem;
+    display: block;
+}
+
+.navbar-links li:hover {
+    background-color: #b26cdd;
+    border-radius: 30px;
+}
+
+.toggle-button {
+    position: absolute;
+    top: 1.25rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: #472353;
+    border-radius: 10px;
+}
+
+.modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    visibility: hidden;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+}
+
+.search-modal-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    visibility: hidden;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+}
+
+.is-active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tile {
+    margin-top: 20px;
+}
+
+@media (max-width: 750px) {
+    .toggle-button {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: none;
+        width: 100%
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-links ul {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .navbar-links li {
+        text-align: center;
+    }
+
+    .navbar-links li a {
+        padding: .5rem 1rem;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+}
+
