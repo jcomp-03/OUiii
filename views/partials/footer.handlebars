@@ -6,3 +6,8 @@
         <button id="loginBtn" type="button" class="enter-btn btn btn-primary btn-lg">Login/Signup</button>
     {{/if}}
 </footer>
+{{#if loggedIn}}
+    <script src="/js/logout.js"></script>
+{{else}}
+    <script src="/js/goToLoginPage.js"></script>
+{{/if}}
