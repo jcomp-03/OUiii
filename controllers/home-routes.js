@@ -39,7 +39,8 @@ router.get('/dashboard', async (req, res) => {
         }
       })
       const user = dbUserData.get( { plain: true });
-      
+      // console.log(user);
+
       // now find all the parties associated with that user
       const dbPartyData = await Party.findAll({
         where: {
@@ -55,14 +56,13 @@ router.get('/dashboard', async (req, res) => {
           },
         ],
       });
-
       // console.log(dbPartyData);
 
       const parties = dbPartyData.map((gallery) =>
         gallery.get({ plain: true })
       );
 
-      // console.log(parties);
+      console.log(parties);
 
       // when the dashboard for that user is rendered, pass in the parties array, which
       // is just an array of party objects belonging to that user
@@ -81,6 +81,8 @@ router.get('/dashboard', async (req, res) => {
 
 // GET one party
 router.get('/party/:id', async (req, res) => {
+  console.log('**************** inside home-routes/party/:id ***************');
+  console.log('req.session.loggedIn value is', req.session.loggedIn);
   try {
     const dbPaintingData = await Painting.findByPk(req.params.id);
 
