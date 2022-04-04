@@ -3,8 +3,6 @@ const { User, Party, Theme } = require('../../models');
 // Import the custom middleware
 const withAuth = require('../../utils/auth');
 
-/**** Not clear yet which routes might actually be needed ****/
-
 // GET /api/parties i.e. get all parties
 router.get('/', async (req, res) => {
     // Access our Party model and run .findAll() method
@@ -23,26 +21,18 @@ router.get('/', async (req, res) => {
     });
 });
 
+// GET /api/parties/1 i.e. get single party
+router.get('/:id', async (req, res) => {
+  try {
+    const dbPartyData = await Party.findByPk(req.params.id);
 
-// GET /api/parties/1 i.e. get all parties for SINGLE user
-router.get('/:user_id', (req, res) => {
-    // Access our Party model and run .findAll() method
-    Party.findAll({
-      where: {
-        user_id: req.params.user_id
-      },
-      include: [
-        {
-          model: User,
-          attributes: ['id', 'firstname', 'lastname', 'email']
-        }
-      ]
-    })
-      .then(dbPartyData => res.json(dbPartyData))
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-      });
+    const party = dbPartyData.get({ plain: true });
+
+    res.render('party', { party, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 // POST /api/parties i.e. create a new party

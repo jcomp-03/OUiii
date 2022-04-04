@@ -9,7 +9,7 @@ const withAuth = require('../../utils/auth');
 router.get('/', (req, res) => {
     // Access our User model and run .findAll() method
     User.findAll({
-      attributes: { exclude: ['password'] }
+      // attributes: { exclude: ['password'] }
     })
       .then(dbUserData => res.json(dbUserData))
       .catch(err => {
@@ -94,12 +94,14 @@ router.post('/login', (req, res) => {
         res.status(400).json({  message: 'Incorrect email or password. Please try again!' });
         return;
       }
+
       // Verify user login password to stored hashed password
       const validPassword = dbUserData.checkPassword(req.body.password);
       if (!validPassword) {
         res.status(400).json({ message: 'Incorrect password!' });
         return;
       }
+
       req.session.save(() => {
         // accessing the session information in the routes
         // This gives our server easy access to the user's user_id,
@@ -107,6 +109,7 @@ router.post('/login', (req, res) => {
         req.session.user_id = dbUserData.id;
         req.session.email = dbUserData.email;
         req.session.loggedIn = true;
+        
         // if entered password matches hashed password, send back the following
         res.json({ user: dbUserData, message: 'You are now logged in!' });
       });
