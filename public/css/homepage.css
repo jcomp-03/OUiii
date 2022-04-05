@@ -22,33 +22,39 @@ header h1 {
 }
 
 #hero-frame img {
-    max-width: 100%;
+    /* max-width: 100%;  */
+    background-size: cover;
     display: flex;
-    margin-bottom: 2.5rem;
+    background-attachment: fixed;
+    background-position: 100%;
+    /* margin-bottom: 2.5rem; */
 }
 
 #hero {
-    background-size: cover;
-    position: fixed;
-    background-position: 50% 50%;
-    max-width: 100%;
-    display: -webkit-inline-flex;
-    justify-content: center;
+    /* background-size: cover; */
+    /* position: fixed; */
+    /* background-position: 50% 50%; */
+    /* max-width: 100%; */
+    /* display: -webkit-inline-flex; */
+    /* justify-content: center; */
 }
 
 footer {
-    background: #472352;
+    background: #dcc5c5;
     display: flex;
     width: 100%;
     bottom: 0;
-    position: fixed;
+    position: absolute bottom;
+    background-attachment: fixed;
     padding: 40px 35px;
     justify-content: space-between;    
 }
 
 .enter-btn {
     font-family: 'Fredoka One', cursive;
-    font-size: 32px;
+    font-size: 20px;
     background: #FAC710;
+    padding: 15px;
+    border-radius: 15px;
     color: #472352;
 }
