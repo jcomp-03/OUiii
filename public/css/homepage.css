@@ -23,6 +23,7 @@ header h1 {
 
 #hero-frame img {
     max-width: 100%;
+    opacity: 0.75; 
     display: flex;
     margin-bottom: 2.5rem;
 }
@@ -37,7 +38,7 @@ header h1 {
 }
 
 footer {
-    background: #472352;
+    background: #dcc5c5;
     display: flex;
     width: 100%;
     bottom: 0;
@@ -48,7 +49,9 @@ footer {
 
 .enter-btn {
     font-family: 'Fredoka One', cursive;
-    font-size: 32px;
+    font-size: 28px;
     background: #FAC710;
+    padding: 15px;
+    border-radius: 15px;
     color: #472352;
 }

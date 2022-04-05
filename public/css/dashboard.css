@@ -33,21 +33,21 @@ header a {
 }
 
 body {
-    margin: 3px;
-    padding: 3px;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #EEE6E6;
+    background-color: #dcc5c5;
     color: #472353;
     box-shadow: 0px 0px 5px #cfd8dc;
 }
 
 .app-title {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     margin: 1rem;
 }
 
@@ -69,7 +69,7 @@ body {
 }
 
 .nav-list {
-    background: #EEE6E6;
+    background: #dcc5c5;
     margin: 0;
     padding: 1rem 0;
     border-radius: 8px;
@@ -86,6 +86,12 @@ body {
 .navbar-links li:hover {
     background-color: #b26cdd;
     border-radius: 30px;
+}
+
+.logout-button {
+    border-radius: 30px;
+    padding: 1rem;
+    color: #1635e3;
 }
 
 .toggle-button {
@@ -143,6 +149,12 @@ body {
 
 .tile {
     margin-top: 20px;
+}
+
+.form-header {
+    font-size: 24px;
+    padding: 10px;
+    margin: 10px;
 }
 
 @media (max-width: 750px) {
