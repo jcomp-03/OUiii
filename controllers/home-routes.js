@@ -37,7 +37,7 @@ router.get('/dashboard', async (req, res) => {
         where: {
           email: req.session.email
         }
-      })
+      });
       const user = dbUserData.get( { plain: true });
       // console.log(user);
 
@@ -80,15 +80,30 @@ router.get('/dashboard', async (req, res) => {
 });
 
 // GET one party
-router.get('/party/:id', async (req, res) => {
-  console.log('**************** inside home-routes/party/:id ***************');
+router.get('/parties/:id', async (req, res) => {
+  console.log('**************** inside home-routes/parties/:id ***************');
   console.log('req.session.loggedIn value is', req.session.loggedIn);
+
   try {
-    const dbPaintingData = await Painting.findByPk(req.params.id);
+    const dbPartyData = await Party.findOne({
+      where: {
+        id: req.params.id
+      },      
+      include: [
+        {
+          model: Theme,
+          attributes: [
+            'id',
+            'theme_description'
+          ],
+        }
+      ]
+    });
 
-    const painting = dbPaintingData.get({ plain: true });
+    const party = dbPartyData.get({ plain: true });
+    // console.log(party);
 
-    res.render('painting', { painting, loggedIn: req.session.loggedIn });
+    res.render('party', { party, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

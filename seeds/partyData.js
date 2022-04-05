@@ -46,7 +46,7 @@ const partydata = [
     title: 'Fancy cocktails, cause why not',
     ispublic: true,
     isover21: true,
-    user_id: 3,
+    user_id: 1,
     theme_id: 4
   },
   {
@@ -62,7 +62,7 @@ const partydata = [
     title: 'Costume PAR-TAY',
     ispublic: false,
     isover21: true,
-    user_id: 2,
+    user_id: 1,
     theme_id: 1
   },
   {
@@ -70,7 +70,7 @@ const partydata = [
     title: 'My first keg!',
     ispublic: true,
     isover21: true,
-    user_id: 3,
+    user_id: 1,
     theme_id: 3
   },
   {

@@ -1,29 +1,18 @@
-<div class="card">
-  <header class="card-header">
-    <p class="card-header-title">
-      {{title}}
-    </p>
-  </header>
-  <div class="card-image">
-    <figure class="image is-4by3">
-      <img src="/images/{{theme.theme_description}}.png" alt="{{theme.theme_description}}">
-    </figure>
-  </div>
-    <footer class="card-footer">
-      <p>{{startdate}}</p>
-    </footer>
-</div>
-
-{{!-- <div class="m-5 row justify-content-around">
-  <div class="col-12 col-md-6 col-xl-3 mb-3">
-    <div class="card">
-      <h4 class="card-header bg-dark text-light">
-        {{!-- Handlebar for Party Title --}}
-        "{{title}}"
-      </h4>
-      <ul id="party-card" class="list-group list-group-flush">
-        {{id}} {{startdate}} {{theme_id}} {{user_id}} {{isover21}} 
-        {{!-- Handlebar for Party Info --}}
-      </ul>
+<div class="card column is-full-tablet is-half-desktop is-one-quarter-widescreen mx-3 my-3">
+  <a href="/parties/{{id}}">
+    <header class="card-header">
+      <p class="card-header-title is-centered">{{title}}</p>
+    </header>
+    <div class="card-image">
+      <figure class="image is-4by3">
+        <img src="/images/{{theme.theme_description}}.png" alt="{{theme.theme_description}}">
+      </figure>
     </div>
-</div> --}}
+    <div class="card-content is-flex is-justify-content-center">
+      <div class="content">
+        Happening on:<br>
+        {{startdate}}
+      </div>
+    </div>
+  </a>
+</div>

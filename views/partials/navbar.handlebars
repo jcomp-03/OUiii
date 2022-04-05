@@ -1,26 +1,19 @@
 <navbar class="navbar">
-        <div class="app-title">GETParty</div>
-        <a href="#" class="toggle-button">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </a>
-        <div class="navbar-links">
-            {{#if loggedIn}}
-            <ul>
-                <li>
-                    <a href="#" class="search-party-modal">Search for Parties</a>
-                </li>
-                <li>
-                    <a href="#" class="create-party-modal">Create a Party</a>
-                </li>
-                <li>
-                    <a href="#" class="my-parties">My Parties</a>
-                </li>
-                <li>
-                    <a href="#">Logout</button>
-                </li>
-            </ul>
-            {{/if}}
-        </div>
-    </navbar>
+    <div class="navbar-brand app-title">GETParty</div>
+    {{!-- <div class="app-title">GETParty</div> --}}
+    <a href="#" class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </a>
+    <div class="navbar-links">
+        {{#if loggedIn}}
+        <ul>
+            <li><a href="#" class="navbar-item search-party-modal">Search for Parties</a></li>
+            <li><a href="#" class="navbar-item create-party-modal">Create a Party</a></li>
+            <li><a href="#" class="navbar-item my-parties">My Parties</a></li>
+            <button class="button is-link is-rounded" id="logoutBtn" type="submit">Logout</button>
+        </ul>
+        {{/if}}
+    </div>
+</navbar>
