@@ -3,22 +3,28 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
+} 
 
-header {
-    padding: 20px 35px;
+.homepage-navbar {
+    padding: 20px 35px; 
+    /* background-color: transparent; */
     display: flex;
-    background-color: #472352;
     justify-content: space-between;
-    margin-bottom: 5px;    
-}
+    flex-wrap: wrap;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    background-image: url("../images/housepartyhero.jpeg");
+    background-size: cover;
+    background-attachment: fixed;
+    /* background-position: 80%; */
+    z-index: 9999;
+  }
 
-header h1 {
-    font-family: 'Fredoka One', cursive;
-    font-size: 68px;
-    display: inline-flex;
-    color: #FAC710;
-    margin: 0;
+
+.app-name {
+      font-size: 48px;
+      color: #FAC710;
 }
 
 #hero-frame img {
@@ -27,34 +33,30 @@ header h1 {
     display: flex;
     background-attachment: fixed;
     background-position: 100%;
-    /* margin-bottom: 2.5rem; */
-}
-
-#hero {
-    /* background-size: cover; */
-    /* position: fixed; */
-    /* background-position: 50% 50%; */
-    /* max-width: 100%; */
-    /* display: -webkit-inline-flex; */
-    /* justify-content: center; */
 }
 
 footer {
-    background: #dcc5c5;
     display: flex;
     width: 100%;
-    bottom: 0;
-    position: absolute bottom;
-    background-attachment: fixed;
     padding: 40px 35px;
-    justify-content: space-between;    
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    background-image: url("../images/housepartyhero.jpeg");
+    background-size: cover;
+    background-attachment: fixed;
+    z-index: 9999;
+
 }
 
 .enter-btn {
-    font-family: 'Fredoka One', cursive;
-    font-size: 20px;
-    background: #FAC710;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #FAC710;
+    background-image: linear-gradient(135deg, #ecc344 0%, #b3811e 100%);
     padding: 15px;
-    border-radius: 15px;
+    border-radius: 30px;
     color: #472352;
 }

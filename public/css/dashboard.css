@@ -1,40 +1,15 @@
-/* * {
-    font-family: 'Fredoka One', cursive;
-    color: #472352;
-}
-
-header h1 {
-    font-size: 30px;
-    color: #472352;
-    border-bottom: 2px solid #472352;
-}
-
-#main-dashboard {
-    background-color: #EEE6E6;
-}
-
-header nav ul li {
-    justify-content: space-between;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    list-style: none;
-}
-
-header a {
-    color: #472352;
-    text-decoration: none;
-} */
-
 
 * {
     box-sizing: border-box;
-    font-family: 'Fredoka One', cursive;
+    /* font-family: 'Fredoka One', cursive; */
+    font-family: 'Montserrat';
     color: #472352;
 }
 
 body {
     margin: 0;
     padding: 0;
+    background-color: #EEE6E6;
 }
 
 .navbar {
@@ -47,6 +22,8 @@ body {
 }
 
 .app-title {
+    font-family: 'Montserrat';
+    font-weight: bold;
     font-size: 2.5rem;
     margin: 1rem;
 }
@@ -96,7 +73,7 @@ body {
 
 .toggle-button {
     position: absolute;
-    top: 1.25rem;
+    top: 2.25rem;
     right: 1rem;
     display: none;
     flex-direction: column;
@@ -155,6 +132,28 @@ body {
     font-size: 24px;
     padding: 10px;
     margin: 10px;
+}
+
+.party-card {
+    display: flex;
+    margin: 35px;
+    border-radius: 30px;
+    color: #dcc5c5;
+    box-shadow: 0px 0px 5px #cfd8dc;
+}
+
+.card-header {
+    font-size: 1.25rem;
+    padding: 20px;
+}
+
+.party-image {
+    display: flex;
+    width: 400px;
+}
+
+.card-date {
+    justify-content: center;
 }
 
 @media (max-width: 750px) {
