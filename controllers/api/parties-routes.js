@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Party, Theme } = require('../../models');
+const { Party, Theme, User } = require('../../models');
 // Import the custom middleware
 const withAuth = require('../../utils/auth');
 
@@ -9,8 +9,8 @@ router.get('/', async (req, res) => {
     Party.findAll({
       include: [
         {
-          model: User,
-          attributes: ['id', 'firstname', 'lastname', 'email']
+          model: Theme,
+          attributes: ['id', 'theme_description']
         }
       ]
     })
@@ -92,30 +92,17 @@ router.put('/:id', (req, res) => {
 
 // DELETE /api/parties/1
 router.delete('/:id', (req, res) => {
-    let uname;
-    let uid = req.params.id;
-
-    User.findOne({
-      attributes: { exclude: ['email', 'password'] },
+    Party.destroy({
       where: {
         id: req.params.id
       }
     })
-    .then(dbUserData => {
-      uname = dbUserData.dataValues.username;
-    });     
-
-    User.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
-    .then(dbUserData => {
-        if (!dbUserData) {
-          res.status(404).json({ message: 'No user found with this id' });
+    .then(dbPartyData => {
+        if (!dbPartyData) {
+          res.status(404).json({ message: 'No party found with this id' });
           return;
         }
-        res.json(`User ${uname} with id ${uid} has been deleted.`);
+        res.json(`Party deleted successfully.`);
     })
     .catch(err => {
         console.log(err);

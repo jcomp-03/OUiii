@@ -80,8 +80,8 @@ router.get('/dashboard', async (req, res) => {
 });
 
 // GET one party
-router.get('/parties/:id', async (req, res) => {
-  console.log('**************** inside home-routes/parties/:id ***************');
+router.get('/party/:id', async (req, res) => {
+  console.log('**************** inside home-routes/party/:id ***************');
   console.log('req.session.loggedIn value is', req.session.loggedIn);
 
   try {
