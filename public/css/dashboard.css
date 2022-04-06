@@ -18,7 +18,7 @@ body {
     align-items: center;
     background-color: #dcc5c5;
     color: #472353;
-    box-shadow: 0px 0px 5px #cfd8dc;
+    box-shadow: 0px 0px 5px #dadccf;
 }
 
 .app-title {
@@ -41,6 +41,7 @@ body {
 .navbar-links li a {
     text-decoration: none;
     color: #472353;
+    font-weight: bold;
     padding: 1rem;
     display: block;
 }
@@ -60,15 +61,15 @@ body {
     display: block;
 }
 
-.navbar-links li:hover {
+.navbar-links li a:hover {
+    color: #EEE6E6;
     background-color: #b26cdd;
     border-radius: 30px;
 }
 
 .logout-button {
-    border-radius: 30px;
+    /* border-radius: 30px; */
     padding: 1rem;
-    color: #1635e3;
 }
 
 .toggle-button {
