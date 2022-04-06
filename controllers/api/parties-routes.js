@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
       startdate: req.body.startdate,
       ispublic: req.body.ispublic,
       isover21: req.body.isover21,
-      user_id: req.body.user_id,
+      user_id: req.session.user_id,
       theme_id: req.body.theme_id
     })
     .then(dbPartyData => {
