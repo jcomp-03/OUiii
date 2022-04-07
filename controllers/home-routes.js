@@ -84,6 +84,8 @@ router.get('/dashboard', async (req, res) => {
 router.post('/search', async (req, res) => {
   console.log('**************** inside home-routes/search ***************');
   console.log('req.session.loggedIn value is', req.session.loggedIn);
+  // console.log(typeof req.body.ispublic, typeof req.body.isover21, typeof req.body.theme_id);
+
   if(req.session.loggedIn) {
     // Access our Party model and run .findAll() method
     // with conditions as shown below
@@ -106,16 +108,19 @@ router.post('/search', async (req, res) => {
     })
       .then(dbPartyData => {
         const partySearchResults = dbPartyData.map(result => result.get({ plain: true }));
-        // console.log('////////////////// partySearchResults is:', partySearchResults);
+        console.log('////////////////// partySearchResults is:', partySearchResults);
         // when the search results are rendered, pass in the partySearchResults array, which
         // is just an array of party objects meeting the search criteria
         res.render('search', { partySearchResults, loggedIn: req.session.loggedIn });
       })
       .catch(err => {
         console.log(err);
-        res.status(500).json(err);
+        res.redirect('dashboard');
       });
+  } else {
+    res.redirect('dashboard');
   }
+
 });
 
 // SHOW one party

@@ -102,38 +102,36 @@ router.delete('/:id', (req, res) => {
 module.exports = router;
 
 
-// router.post('/searchResults', async (req, res) => {
-//   console.log('**************** inside parties-routes/searchResults ***************');
-//   // Access our Party model and run .findAll() method
-//   // with conditions as shown below
-//   try {
-//     const dbPartyData = await Party.findAll({
-//       where: {
-//         ispublic: req.body.ispublic,
-//         isover21: req.body.isover21,
-//         theme_id: req.body.theme_id
-//       },
-//       include: [
-//         {
-//           model: Theme,
-//           attributes: ['id', 'theme_description']
-//         },
-//         {
-//           model: User,
-//           attributes: ['id', 'firstname', 'lastname', 'email']
-//         }
-//       ]
-//     });
-//     // console.log(dbPartyData[0]);
+router.post('/search', async (req, res) => {
+  console.log('**************** inside parties-routes/search ***************');
+  // Access our Party model and run .findAll() method
+  // with conditions as shown below
+  try {
+    const dbPartyData = await Party.findAll({
+      where: {
+        ispublic: req.body.ispublic,
+        isover21: req.body.isover21,
+        theme_id: req.body.theme_id
+      },
+      include: [
+        {
+          model: Theme,
+          attributes: ['id', 'theme_description']
+        },
+        {
+          model: User,
+          attributes: ['id', 'firstname', 'lastname', 'email']
+        }
+      ]
+    });
+    // console.log(dbPartyData[0]);
 
-//     res.j
-
-//     const partySearchResults = dbPartyData.map(result => result.get({ plain: true}));
-//     // console.log(partySearchResults);
-//     // res.json(partySearchResults)
-//     res.render('searchResults', { partySearchResults, loggedIn: req.session.loggedIn });
-//   } catch(err) {
-//     console.log(err);
-//     res.status(500).json(err);
-//   }
-// });
+    const partySearchResults = dbPartyData.map(result => result.get({ plain: true}));
+    // console.log(partySearchResults);
+    // res.json(partySearchResults)
+    res.render('searchResults', { partySearchResults, loggedIn: req.session.loggedIn });
+  } catch(err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
