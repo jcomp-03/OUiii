@@ -38,12 +38,12 @@ router.get('/:id', async (req, res) => {
 // POST /api/parties i.e. create a new party
 router.post('/', (req, res) => {
     Party.create({
-      title: req.body.title, 
-      startdate: req.body.startdate,
-      ispublic: req.body.ispublic,
-      isover21: req.body.isover21,
+      title: req.params.title, 
+      startdate: req.params.startdate,
+      ispublic: req.params.ispublic,
+      isover21: req.params.isover21,
       user_id: req.session.user_id,
-      theme_id: req.body.theme_id
+      theme_id: req.params.theme_id
     })
     .then(dbPartyData => {
       console.log('dbPartyData is as follows', dbPartyData);
@@ -61,7 +61,7 @@ router.put('/:id', (req, res) => {
     // This .update() method combines the parameters for creating data and looking up data.
     // We pass in req.body to provide the new data we want to use in the update and req.params.id
     // to indicate where exactly we want that new data to be stored.
-    Party.update(req.body, {
+    Party.update(req.params, {
       individualHooks: true,
       where: {
         id: req.params.id
@@ -110,9 +110,9 @@ router.post('/search', async (req, res) => {
   try {
     const dbPartyData = await Party.findAll({
       where: {
-        ispublic: req.body.ispublic,
-        isover21: req.body.isover21,
-        theme_id: req.body.theme_id
+        ispublic: req.params.ispublic,
+        isover21: req.params.isover21,
+        theme_id: req.params.theme_id
       },
       include: [
         {

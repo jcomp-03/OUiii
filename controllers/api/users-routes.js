@@ -53,14 +53,14 @@ router.get('/:id', (req, res) => {
 // This route is used during execution of signupFormHandler in login.js script
 router.post('/', (req, res) => {
     User.create({
-      firstname: req.body.firstname, 
-      lastname: req.body.lastname,
-      email: req.body.email,
-      age: req.body.age,
-      address: req.body.address,
-      password: req.body.password,
-      lat: req.body.lat,
-      long: req.body.long
+      firstname: req.params.firstname, 
+      lastname: req.params.lastname,
+      email: req.params.email,
+      age: req.params.age,
+      address: req.params.address,
+      password: req.params.password,
+      lat: req.params.lat,
+      long: req.params.long
     })
     .then(dbUserData => {
       // accessing the session information in the routes
@@ -86,7 +86,7 @@ router.post('/login', (req, res) => {
     User.findOne({
       attributes: { exclude: ['age', 'address', 'lat', 'long']},
       where: {
-        email: req.body.email
+        email: req.params.email
       }
     })
     .then(dbUserData => {
@@ -96,7 +96,7 @@ router.post('/login', (req, res) => {
       }
 
       // Verify user login password to stored hashed password
-      const validPassword = dbUserData.checkPassword(req.body.password);
+      const validPassword = dbUserData.checkPassword(req.params.password);
       if (!validPassword) {
         res.status(400).json({ message: 'Incorrect password!' });
         return;
@@ -134,7 +134,7 @@ router.put('/:id', (req, res) => {
     // This .update() method combines the parameters for creating data and looking up data.
     // We pass in req.body to provide the new data we want to use in the update and req.params.id
     // to indicate where exactly we want that new data to be stored.
-    User.update(req.body, {
+    User.update(req.params, {
       individualHooks: true,
       where: {
         id: req.params.id

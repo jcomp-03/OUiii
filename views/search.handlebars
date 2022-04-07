@@ -1,9 +1,11 @@
 {{> navbar}}
 
 <h1 class="has-text-centered is-size-1 is-size-5-mobile">
-    Your search criteria returned the following parties:
+    Your party search criteria returned the following parties:
 </h1>
 
-{{!-- {{#each partySearchResults as |party|}}
-{{> searchResult}}
-{{/each}} --}}
+<div class="columns is-multiline is-justify-content-center">
+    {{#each parties as |party|}}
+    {{> party-card-search}}
+    {{/each}}
+</div>

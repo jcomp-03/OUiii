@@ -81,19 +81,22 @@ router.get('/dashboard', async (req, res) => {
 });
 
 // SHOW searchresults
-router.post('/search', async (req, res) => {
-  console.log('**************** inside home-routes/search ***************');
+router.get('/search/:ispublic/:isover21/:theme_id', async (req, res) => {
+  console.log('**************** inside home-routes/search/:ispublic/isover21/:theme_id ***************');
   console.log('req.session.loggedIn value is', req.session.loggedIn);
-  // console.log(typeof req.body.ispublic, typeof req.body.isover21, typeof req.body.theme_id);
+  console.log(typeof req.params.ispublic, typeof req.params.isover21, typeof req.params.theme_id);
+
+  const ispublic = req.params.ispublic === "true";
+  const isover21 = req.params.isover21 === "true";
 
   if(req.session.loggedIn) {
     // Access our Party model and run .findAll() method
     // with conditions as shown below
-    Party.findAll({
+    const dbPartyData = await Party.findAll({
       where: {
-        ispublic: req.body.ispublic,
-        isover21: req.body.isover21,
-        theme_id: req.body.theme_id
+        ispublic: ispublic,
+        isover21: isover21,
+        theme_id: req.params.theme_id
       },
       include: [
         {
@@ -105,22 +108,14 @@ router.post('/search', async (req, res) => {
           attributes: ['id', 'firstname', 'lastname', 'email']
         }
       ]
-    })
-      .then(dbPartyData => {
-        const partySearchResults = dbPartyData.map(result => result.get({ plain: true }));
-        console.log('////////////////// partySearchResults is:', partySearchResults);
-        // when the search results are rendered, pass in the partySearchResults array, which
-        // is just an array of party objects meeting the search criteria
-        res.render('search', { partySearchResults, loggedIn: req.session.loggedIn });
-      })
-      .catch(err => {
-        console.log(err);
-        res.redirect('dashboard');
-      });
-  } else {
-    res.redirect('dashboard');
-  }
+    });
 
+    const parties = dbPartyData.map(result => result.get({ plain: true }));
+    console.log('////////////////// partySearchResults is:', parties);
+    // when the search results are rendered, pass in the partySearchResults array, which
+    // is just an array of party objects meeting the search criteria
+    res.render('search', { parties, loggedIn: req.session.loggedIn });
+  }
 });
 
 // SHOW one party
@@ -156,3 +151,54 @@ router.get('/party/:id', async (req, res) => {
 
 
 module.exports = router;
+
+
+
+// SHOW searchresults
+// router.get('/search/:ispublic/isover21/:theme_id', async (req, res) => {
+//   console.log('**************** inside home-routes/search ***************');
+//   console.log('req.session.loggedIn value is', req.session.loggedIn);
+//   console.log(typeof req.body.ispublic, typeof req.body.isover21, typeof req.body.theme_id);
+
+//   const ispublic = req.params.ispublic === "true";
+//   const isover21 = req.params.isover21 === "true";
+  
+//   const partyData = await Party.findAll({
+
+//   })
+//   if(req.session.loggedIn) {
+//     // Access our Party model and run .findAll() method
+//     // with conditions as shown below
+//     Party.findAll({
+//       where: {
+//         ispublic: req.body.ispublic,
+//         isover21: req.body.isover21,
+//         theme_id: req.body.theme_id
+//       },
+//       include: [
+//         {
+//           model: Theme,
+//           attributes: ['id', 'theme_description']
+//         },
+//         {
+//           model: User,
+//           attributes: ['id', 'firstname', 'lastname', 'email']
+//         }
+//       ]
+//     })
+//       .then(dbPartyData => {
+//         const partySearchResults = dbPartyData.map(result => result.get({ plain: true }));
+//         console.log('////////////////// partySearchResults is:', partySearchResults);
+//         // when the search results are rendered, pass in the partySearchResults array, which
+//         // is just an array of party objects meeting the search criteria
+//         res.render('search', { partySearchResults, loggedIn: req.session.loggedIn });
+//       })
+//       .catch(err => {
+//         console.log(err);
+//         res.redirect('dashboard');
+//       });
+//   } else {
+//     res.redirect('dashboard');
+//   }
+
+// });

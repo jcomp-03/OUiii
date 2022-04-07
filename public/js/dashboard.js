@@ -33,13 +33,8 @@ async function searchPartyHandler(event) {
     }
     // console.log(ispublic, ispublicAll, isover21, isover21false, theme_id, searchDistance);
     
-    const response = await fetch(`/search`, {
-        method: 'post',
-        body: JSON.stringify({
-          ispublic,
-          isover21,
-          theme_id
-        }),
+    const response = await fetch(`/search/${ispublic}/${isover21}/${theme_id}`, {
+        method: 'get',
         headers: { 'Content-Type': 'application/json' }
     });
 
@@ -47,7 +42,7 @@ async function searchPartyHandler(event) {
         // alert('Your search is successfull!');
         searchModal.classList.remove('is-active');
         // after the modal is removed, refresh the page to show the search results
-        document.location.replace('search');
+        document.location.replace(`/search/${ispublic}/${isover21}/${theme_id}`);
     } else {
         alert(response.statusText);
     }
