@@ -46,6 +46,7 @@ router.post('/', (req, res) => {
       theme_id: req.body.theme_id
     })
     .then(dbPartyData => {
+      console.log('dbPartyData is as follows', dbPartyData);
       res.json({ message: 'Party created successfully!', dbPartyData });
     })
     .catch(err => {
