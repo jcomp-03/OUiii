@@ -14,6 +14,7 @@ const searchPartyBtn = document.getElementById('searchPartyBtn');
 const modalCancelBtn = document.getElementById('modalCancelBtn');
 const searchModalCancelBtn = document.getElementById('searchModalCancelBtn');
 const cancelBtns = document.querySelectorAll('.cancel-button');
+const myAccountBtn = document.querySelector('.my-account');
 
 // handle the user searching for parties
 async function searchPartyHandler(event) {
@@ -127,3 +128,7 @@ searchModalCancelBtn.addEventListener('click', () => {
 searchPartyBtn.addEventListener('click', searchPartyHandler);
 // create party event listener
 createPartyBtn.addEventListener('click', createPartyHandler);
+// my account event listener
+myAccountBtn.addEventListener('click', () => {
+    window.alert('Sorry, your account details are not available at this moment.');
+});

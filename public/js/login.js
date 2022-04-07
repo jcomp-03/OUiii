@@ -28,7 +28,6 @@ async function loginFormHandler(event) {
   }
 }
 
-
 async function signupFormHandler(event){
   event.preventDefault();
   // We need to POST first name, last name, email, age, & address going from our sign-up form to the server. 
