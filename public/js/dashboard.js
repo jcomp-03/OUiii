@@ -12,7 +12,6 @@ const modal= document.querySelector('.modal');
 const modalCancel = document.getElementById('modalCancel');
 const createPartyBtn = document.getElementById('createPartyBtn');
 
-
 async function createPartyHandler(event) {
     event.preventDefault();
     // get the values from the modal inputs, radio buttons, etc
