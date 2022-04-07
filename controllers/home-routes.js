@@ -3,18 +3,19 @@ const { User, Party, Theme } = require('../models');
 // Import the custom middleware
 const withAuth = require('../utils/auth');
 
-// GET homepage
+// SHOW homepage
 router.get('/', async (req, res) => {
   console.log('**************** inside home-routes/ ***************');
   res.render('homepage', { loggedIn: req.session.loggedIn} );
 });
 
-// In /login route, check if user is logged in and redirect to the dashboard if true
-// otherwise render the /login page for user to enter credentials
+// SHOW login
 router.get('/login', (req, res) => {
   console.log('**************** inside home-routes/login ***************');
   console.log('req.session.loggedIn value is', req.session.loggedIn);
   
+  // check if user is logged in and redirect to the dashboard if true
+  // otherwise render the /login page for user to enter credentials
   if (req.session.loggedIn) {
     res.redirect('dashboard');
     return;
@@ -23,7 +24,7 @@ router.get('/login', (req, res) => {
   res.render('login', { loggedIn: req.session.loggedIn });
 });
 
-// GET dashboard
+// SHOW dashboard
 router.get('/dashboard', async (req, res) => {
   console.log('**************** inside home-routes/dashboard ***************');
   console.log('req.session.loggedIn value is', req.session.loggedIn);
@@ -79,7 +80,44 @@ router.get('/dashboard', async (req, res) => {
   }
 });
 
-// GET one party
+// SHOW searchresults
+router.post('/searchresults', async (req, res) => {
+  console.log('**************** inside home-routes/searchresults ***************');
+  console.log('req.session.loggedIn value is', req.session.loggedIn);
+  if(req.session.loggedIn) {
+    // Access our Party model and run .findAll() method
+    // with conditions as shown below
+    Party.findAll({
+      where: {
+        ispublic: req.body.ispublic,
+        isover21: req.body.isover21,
+        theme_id: req.body.theme_id
+      },
+      include: [
+        {
+          model: Theme,
+          attributes: ['id', 'theme_description']
+        },
+        {
+          model: User,
+          attributes: ['id', 'firstname', 'lastname', 'email']
+        }
+      ]
+    })
+      .then(dbPartyData => {
+        const partySearchResults = dbPartyData.map(result => result.get({ plain: true }));
+        // when the search results are rendered, pass in the partySearchResults array, which
+        // is just an array of party objects meeting the search criteria
+        res.render('searchResults', { partySearchResults, loggedIn: req.session.loggedIn });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
+});
+
+// SHOW one party
 router.get('/party/:id', async (req, res) => {
   console.log('**************** inside home-routes/party/:id ***************');
   console.log('req.session.loggedIn value is', req.session.loggedIn);
@@ -110,50 +148,5 @@ router.get('/party/:id', async (req, res) => {
   }
 });
 
-
-
-
-// GET one gallery
-// Use the custom middleware before allowing the user to access the gallery
-router.get('/gallery/:id', withAuth, async (req, res) => {
-  try {
-    const dbGalleryData = await Gallery.findByPk(req.params.id, {
-      include: [
-        {
-          model: Painting,
-          attributes: [
-            'id',
-            'title',
-            'artist',
-            'exhibition_date',
-            'filename',
-            'description',
-          ],
-        },
-      ],
-    });
-
-    const gallery = dbGalleryData.get({ plain: true });
-    res.render('gallery', { gallery, loggedIn: req.session.loggedIn });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
-
-// GET one painting
-// Use the custom middleware before allowing the user to access the painting
-router.get('/painting/:id', withAuth, async (req, res) => {
-  try {
-    const dbPaintingData = await Painting.findByPk(req.params.id);
-
-    const painting = dbPaintingData.get({ plain: true });
-
-    res.render('painting', { painting, loggedIn: req.session.loggedIn });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
-});
 
 module.exports = router;

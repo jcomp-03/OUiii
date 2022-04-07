@@ -1,4 +1,4 @@
-/* const toggleButton = document.getElementsByClassName('toggle-button')[0]; // class is in navbars partial
+const toggleButton = document.getElementsByClassName('toggle-button')[0]; // class is in navbars partial
 const navbarLinks = document.getElementsByClassName('navbar-links')[0]; // class is in navbars partial
 const createParty = document.querySelector('.create-party-modal'); // class is in navbars partial
 const searchParty = document.querySelector('.search-party-modal'); // class is in navbars partial
@@ -10,13 +10,45 @@ const searchModalBackground = document.querySelector('.search-modal-background')
 const modal= document.querySelector('.modal');
 const modalCancel = document.getElementById('modalCancel');
 const createPartyBtn = document.getElementById('createPartyBtn');
+const searchPartyBtn = document.getElementById('searchPartyBtn');
+const modalCancelBtn = document.querySelector('#searchModalCancelBtn');
 
+async function searchPartyHandler(event) {
+    event.preventDefault();
+    // get the values from the modal inputs, radio buttons, etc
+    const ispublic = document.getElementById('searchPartyPublic').checked;
+    const ispublicfalse = document.getElementById('searchPartyPrivate').checked;
+    const isover21 = document.getElementById('searchIsOver21True').checked;
+    const isover21false = document.getElementById('searchIsOver21False').checked;
+    const theme_id = document.getElementById('searchPartyTheme').value.trim();
+    const searchDistance = document.getElementById('searchPartyDistance').value.trim();
 
-const modalCancelBtn = document.querySelector('#modalCancelBtn');
+    // check that there is at least one qualifying condition from the above constants
+    if(! ( ispublic || ispublicfalse || isover21 || isover21false || theme_id || searchDistance)) {
+        alert('Please ensure you are inputting a value for at least one field');
+        return;
+    }
+    // console.log(ispublic, ispublicAll, isover21, isover21false, theme_id, searchDistance);
+    
+    const response = await fetch('/searchresults', {
+        method: 'post',
+        body: JSON.stringify({
+          ispublic,
+          isover21,
+          theme_id
+        }),
+        headers: { 'Content-Type': 'application/json' }
+    });
 
-// async function searchPartyHandler(event) {
-
-// }
+    if(response.ok) {
+        alert('Your search is successfull!');
+        modal.classList.remove('is-active');
+        // after the modal is removed, refresh the page to show the search results
+        document.location.replace('searchResults');
+    } else {
+        alert(response.statusText);
+    }
+}
 
 // handle the user submitting a new party event
 async function createPartyHandler(event) {
@@ -51,7 +83,7 @@ async function createPartyHandler(event) {
     });
 
     if (response.ok) {
-        alert('You\'r party has been succesfully created!');
+        alert('Your party has been succesfully created!');
         modal.classList.remove('is-active');
         // after the modal is removed, refresh the dashboard so the new party shows
         document.location.replace('dashboard');
@@ -59,6 +91,8 @@ async function createPartyHandler(event) {
         alert(response.statusText);
     }
 }
+
+
 
 toggleButton.addEventListener('click', () => {
     navbarLinks.classList.toggle('active')
@@ -71,8 +105,7 @@ createParty.addEventListener('click', () => {
     modalBackground.classList.add('is-active');
 });
 
-// event listener for when the Create Party button is clicked
-createPartyBtn.addEventListener('click', createPartyHandler);
+
 
 // ***** SEARCH MODAL EVENT LISTENERS ***** // 
 searchParty.addEventListener('click', () => {
@@ -92,10 +125,16 @@ modalClose.addEventListener('click', () => {
 });
 
 // cancel out of modal
-modalCancel.addEventListener('click', () => {
-    modal.classList.remove('is-active');
-});
+// modalCancel.addEventListener('click', () => {
+//     modal.classList.remove('is-active');
+// });
 
 modalCancelBtn.addEventListener('click', () => {
     modal.classList.remove('is-active');
-}); */
+});
+
+
+// event listener for when the 'Search parties' button is clicked
+searchPartyBtn.addEventListener('click', searchPartyHandler);
+// event listener for when the 'Create Party' button is clicked
+createPartyBtn.addEventListener('click', createPartyHandler);

@@ -39,7 +39,7 @@ const partydata = [
     ispublic: true,
     isover21: true,
     user_id: 3,
-    theme_id: 5
+    theme_id: 3
   },
   {
     startdate: '2022-05-21',
@@ -71,7 +71,7 @@ const partydata = [
     ispublic: true,
     isover21: true,
     user_id: 1,
-    theme_id: 3
+    theme_id: 2
   },
   {
     startdate: '2022-10-31',
