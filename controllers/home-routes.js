@@ -139,13 +139,19 @@ router.get('/party/:id', async (req, res) => {
       ]
     });
 
+    if(!dbPartyData) {
+      res.redirect('/dashboard');
+      // res.status(404).json( {message: "Resource does not exist"} );
+      return;
+    }
+
     const party = dbPartyData.get({ plain: true });
     // console.log(party);
-
     res.render('party', { party, loggedIn: req.session.loggedIn });
+
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    console.log('Error Error Will Robinson', err);
+    res.status(500).json();
   }
 });
 
