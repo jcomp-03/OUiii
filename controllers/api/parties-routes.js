@@ -38,12 +38,12 @@ router.get('/:id', async (req, res) => {
 // POST /api/parties i.e. create a new party
 router.post('/', (req, res) => {
     Party.create({
-      title: req.params.title, 
-      startdate: req.params.startdate,
-      ispublic: req.params.ispublic,
-      isover21: req.params.isover21,
+      title: req.body.title, 
+      startdate: req.body.startdate,
+      ispublic: req.body.ispublic,
+      isover21: req.body.isover21,
       user_id: req.session.user_id,
-      theme_id: req.params.theme_id
+      theme_id: req.body.theme_id
     })
     .then(dbPartyData => {
       console.log('dbPartyData is as follows', dbPartyData);
