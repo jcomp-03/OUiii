@@ -34,7 +34,7 @@ async function signupFormHandler(event){
   const firstname = document.getElementById('first-name-signup').value.trim();
   const lastname = document.getElementById('last-name-signup').value.trim();
   const email = document.getElementById('email-signup').value.trim();
-  const age = document.getElementById('age-signup').value.trim();
+  const age = parseInt(document.getElementById('age-signup').value.trim());
   const address = document.getElementById('address-signup').value.trim();
   const password = document.getElementById('password-signup').value.trim();
 
