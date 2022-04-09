@@ -1,6 +1,6 @@
 const toggleButton = document.getElementsByClassName('toggle-button')[0];
 const navbarLinks = document.getElementsByClassName('navbar-links')[0];
-const createParty = document.querySelector('.create-party-modal');
+const createPartyBtn = document.querySelector('.create-party-modal');
 const searchParty = document.querySelector('.search-party-modal');
 const searchModal = document.querySelector('#search-modal'); 
 const searchClose = document.querySelector('#search-delete');
@@ -9,8 +9,8 @@ const modalBackground = document.querySelector('.modal-background');
 const searchModalBackground = document.querySelector('.search-modal-background');
 const modal= document.querySelector('.modal');
 const modalCancel = document.getElementById('modalCancel');
-const createPartyBtn = document.getElementById('createPartyBtn');
-const searchPartyBtn = document.getElementById('searchPartyBtn');
+const submitCreateParty = document.getElementById('submitCreateParty');
+const submitSearchParty = document.getElementById('submitSearchParty');
 const modalCancelBtn = document.getElementById('modalCancelBtn');
 const searchModalCancelBtn = document.getElementById('searchModalCancelBtn');
 const cancelBtns = document.querySelectorAll('.cancel-button');
@@ -27,8 +27,8 @@ async function searchPartyHandler(event) {
     const searchDistance = document.getElementById('searchPartyDistance').value.trim();
 
     // check that there is at least one qualifying condition from the above constants
-    if(! ( ispublic || ispublicfalse || isover21 || isover21false || theme_id || searchDistance)) {
-        alert('Please ensure you are inputting a value for at least one field');
+    if(!(( ispublic || ispublicfalse ) && (isover21 || isover21false ) && theme_id)) {
+        alert('Please ensure you are inputting a value for public/private, age minimum, and party theme.');
         return;
     }
     // console.log(ispublic, ispublicAll, isover21, isover21false, theme_id, searchDistance);
@@ -100,7 +100,7 @@ searchParty.addEventListener('click', () => {
     searchModalBackground.classList.add('is-active');
 });
 // make Create Modal appear when its button is clicked in nav bar
-createParty.addEventListener('click', () => {
+createPartyBtn.addEventListener('click', () => {
     modal.classList.add('is-active')
     modalBackground.classList.add('is-active');
 });
@@ -124,6 +124,6 @@ searchModalCancelBtn.addEventListener('click', () => {
 });
 
 // search party event listener
-searchPartyBtn.addEventListener('click', searchPartyHandler);
+submitSearchParty.addEventListener('click', searchPartyHandler);
 // create party event listener
-createPartyBtn.addEventListener('click', createPartyHandler);
+submitCreateParty.addEventListener('click', createPartyHandler);
