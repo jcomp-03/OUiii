@@ -3,8 +3,6 @@ const { User, Party, Theme } = require('../../models');
 // Import the custom middleware
 const withAuth = require('../../utils/auth');
 
-/**** Not clear yet which routes might actually be needed ****/
-
 // GET /api/users
 router.get('/', (req, res) => {
     // Access our User model and run .findAll() method
@@ -52,68 +50,69 @@ router.get('/:id', (req, res) => {
 // POST /api/users
 // This route is used during execution of signupFormHandler in login.js script
 router.post('/', (req, res) => {
-    User.create({
-      firstname: req.body.firstname, 
-      lastname: req.body.lastname,
-      email: req.body.email,
-      age: req.body.age,
-      address: req.body.address,
-      password: req.body.password,
-      lat: req.body.lat,
-      long: req.body.long
-    })
-    .then(dbUserData => {
-      // accessing the session information in the routes
-      // This gives our server easy access to the user's user_id,
-      // email, and a Boolean describing whether or not the user is logged in.
-      req.session.save(() => {
-        req.session.user_id = dbUserData.id;
-        req.session.email = dbUserData.email;
-        req.session.loggedIn = true;
-        
-        res.json(dbUserData);
-      });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
+  // create the user
+  User.create({
+    firstname: req.body.firstname, 
+    lastname: req.body.lastname,
+    email: req.body.email,
+    age: req.body.age,
+    address: req.body.address,
+    password: req.body.password,
+    lat: req.body.lat,
+    long: req.body.long
+  })
+  .then(dbUserData => {
+    // accessing the session information in the routes
+    // This gives our server easy access to the user's user_id,
+    // email, and a Boolean describing whether or not the user is logged in.
+    req.session.save(() => {
+      req.session.user_id = dbUserData.id;
+      req.session.email = dbUserData.email;
+      req.session.loggedIn = true;
+      res.json(dbUserData);
     });
+  })
+  .catch(err => {
+      console.log('Error, Error Will Robinson', err);
+      res.status(500).json();
+  });
 });
 
 // POST /api/users/login, for authenticating login
 // This route is used during execution of loginFormHandler in login.js script
 router.post('/login', (req, res) => {
-    User.findOne({
-      attributes: { exclude: ['age', 'address', 'lat', 'long']},
-      where: {
-        email: req.body.email
-      }
-    })
-    .then(dbUserData => {
-      if (!dbUserData) {
-        res.status(400).json({  message: 'Incorrect email or password. Please try again!' });
-        return;
-      }
+  User.findOne({
+    attributes: { exclude: ['age', 'address', 'lat', 'long'] },
+    where: {
+      email: req.body.email
+    }
+  })
+  .then(dbUserData => {
+    // if no user is found with that email, send back HTTP 404 error
+    if (!dbUserData) {
+      res.status(404).json( {  message: 'Incorrect email. Please try again!' } );
+      return;
+    }
 
-      // Verify user login password to stored hashed password
-      const validPassword = dbUserData.checkPassword(req.body.password);
-      if (!validPassword) {
-        res.status(400).json({ message: 'Incorrect password!' });
-        return;
-      }
+    // Verify user login password to stored hashed password
+    const validPassword = dbUserData.checkPassword(req.body.password);
+    if (!validPassword) {
+      res.status(400).json( { message: 'Incorrect password! Please try again' } );
+      return;
+    }
 
-      req.session.save(() => {
-        // accessing the session information in the routes
-        // This gives our server easy access to the user's user_id,
-        // email, and a Boolean describing whether or not the user is logged in.
-        req.session.user_id = dbUserData.id;
-        req.session.email = dbUserData.email;
-        req.session.loggedIn = true;
-        
-        // if entered password matches hashed password, send back the following
-        res.json({ user: dbUserData, message: 'You are now logged in!' });
-      });
-    });  
+    req.session.save(() => {
+      // accessing the session information in the routes
+      // This gives our server easy access to the user's user_id,
+      // email, and a Boolean describing whether or not the user is logged in.
+      req.session.user_id = dbUserData.id;
+      req.session.email = dbUserData.email;
+      req.session.loggedIn = true;
+      
+      // if entered password matches hashed password, send back the following
+      res.status(200).json({ user: dbUserData, message: 'You are now logged in!' });
+    });
+  });  
 });
 
 // POST /api/users/logout, terminating session
@@ -155,21 +154,7 @@ router.put('/:id', (req, res) => {
 
 // DELETE /api/users/1
 router.delete('/:id', (req, res) => {
-    // let firstname = null;
-    // let lastname = null;
     let uid = req.params.id;
-
-    User.findOne({
-      attributes: { exclude: ['email', 'password'] },
-      where: {
-        id: req.params.id
-      }
-    })
-    .then(dbUserData => {
-      // let { dataValues } = dbUserData;
-      // firstname = dataValues.firstname;
-      // lastname = dataValues.lastname;
-    });   
 
     User.destroy({
       where: {
@@ -188,5 +173,6 @@ router.delete('/:id', (req, res) => {
         res.status(500).json(err);
     });
 });
+
 
 module.exports = router;

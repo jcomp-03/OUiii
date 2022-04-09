@@ -1,9 +1,7 @@
-
+// function requires development...
 async function editPartyHandler(event) {
     event.preventDefault();
-    console.log('inside editPartyHandler');
     window.alert('This buttons requires some work. Sorry!');
-
 }
 
 async function deletePartyHandler(event) {
@@ -26,7 +24,6 @@ async function deletePartyHandler(event) {
 
 async function goToDashboardHandler(event) {
     event.preventDefault();
-    console.log('inside goToDashboardHandler');
     document.location.replace('/dashboard');
 }
 

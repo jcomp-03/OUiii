@@ -34,7 +34,7 @@ Party.init(
             type: DataTypes.BOOLEAN,
             allowNull: false,
             validate: {
-                isIn: [[ 'true', 'false']]
+                isIn: [[ true, false]]
             }
         },
         // define an isover21 column
@@ -42,7 +42,7 @@ Party.init(
             type: DataTypes.BOOLEAN,
             allowNull: false,
             validate: {
-                isIn: [[ 'true', 'false']]
+                isIn: [[ true, false]]
             }
         },
         // foreign key reference to User model
