@@ -1,4 +1,9 @@
-    <navbar class="homepage-navbar">
-        <div class="app-name">OUIII</div>
-        <button id="loginBtn" type="button" class="enter-btn">Login/Signup</button>
-    </navbar>
+<navbar class="homepage-navbar">
+    <div class="app-name">OUIII</div>
+    <button id="loginBtn" type="button" class="enter-btn">Login/Signup</button>
+</navbar>
+{{#if loggedIn}}
+<script src="/js/logout.js"></script>
+{{else}}
+<script src="/js/goToLoginPage.js"></script>
+{{/if}}
