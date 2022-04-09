@@ -5,7 +5,14 @@
     box-sizing: border-box;
 } 
 
+html, body {
+    height: 100%
+}
+
 .homepage-navbar {
+    /* background-image: url('../images/housepartyhero.jpeg'); */
+    background-color: black;
+    background-size: cover;
     padding: 10px 35px; 
     display: flex;
     justify-content: space-between;
@@ -23,28 +30,6 @@
       color: #FAC710;
 }
 
-#hero-frame img {
-    background-size: cover;
-    display: flex;
-    opacity: .90;
-    background-attachment: absolute top;
-    flex-wrap: wrap;
-    background-position: 100%;
-}
-
-footer {
-    display: flex;
-    /* background-color: black; */
-    width: 100%;
-    padding: 25px 35px;
-    justify-content: space-between;
-    /* position: static; */
-    position: sticky;
-    position: -webkit-sticky;
-    top: 0;
-    z-index: 9999;
-}
-
 .enter-btn {
     font-size: 18px;
     font-weight: bold;
@@ -52,7 +37,48 @@ footer {
     box-shadow: 0px 0px 5px #92834d;
     background-color: #FAC710;
     background-image: linear-gradient(135deg, #ecc344 0%, #b3811e 100%);
-    padding: 15px;
+    padding: 5px;
     border-radius: 30px;
-    color: #472352;
+    color: black;
 }
+
+#hero-frame {
+    background-image: url('../images/housepartyhero.jpeg');
+    background-size: cover;
+    justify-content: center;
+    display: flex;
+    opacity: .90;
+    align-items: flex-start;
+    background-attachment: fixed;
+    flex-wrap: wrap;
+    background-position: 80%;
+    min-height: 100%;
+}
+
+.app-slogan {
+    font-size: 68px;
+    display: flex;
+    align-items: center;
+}
+
+.app-slogan h1 {
+    color: #FAC710;
+}
+
+footer {
+    display: flex;
+    background-color: black;
+    width: 100%;
+    padding: 25px 35px;
+    justify-content: space-between;
+    position: absolute bottom;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 9999;
+}
+
+.footer, .push {
+    height: 50px;
+}
+

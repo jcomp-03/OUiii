@@ -1,4 +1,4 @@
-/* const toggleButton = document.getElementsByClassName('toggle-button')[0]; // class is in navbars partial
+const toggleButton = document.getElementsByClassName('toggle-button')[0]; // class is in navbars partial
 const navbarLinks = document.getElementsByClassName('navbar-links')[0]; // class is in navbars partial
 const createParty = document.querySelector('.create-party-modal'); // class is in navbars partial
 const searchParty = document.querySelector('.search-party-modal'); // class is in navbars partial
@@ -9,6 +9,7 @@ const modalBackground = document.querySelector('.modal-background');
 const searchModalBackground = document.querySelector('.search-modal-background');
 const modal= document.querySelector('.modal');
 const modalCancel = document.getElementById('modalCancel');
+// const searchCancel = document.querySelector('#searchModalCancelBtn');
 const createPartyBtn = document.getElementById('createPartyBtn');
 
 async function createPartyHandler(event) {
@@ -88,6 +89,6 @@ modalCancel.addEventListener('click', () => {
     modal.classList.remove('is-active');
 });
 
-modalCancelBtn.addEventListener('click', () => {
-    modal.classList.remove('is-active');
-}); */
+searchCancel.addEventListener('click', () => {
+    searchModal.classList.remove('is-active');
+}); 
