@@ -88,7 +88,7 @@ router.post('/login', (req, res) => {
     }
   })
   .then(dbUserData => {
-    // if no user is found with that email, send back HTTP 400 error
+    // if no user is found with that email, send back HTTP 404 error
     if (!dbUserData) {
       res.status(404).json( {  message: 'Incorrect email. Please try again!' } );
       return;

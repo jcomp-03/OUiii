@@ -59,14 +59,15 @@ async function createPartyHandler(event) {
     const ispublicfalse = document.getElementById('createPartyPrivate').checked;
     const isover21 = document.getElementById('createIsOver21True').checked;
     const isover21false = document.getElementById('createIsOver21False').checked;
-    const theme_id = document.getElementById('createPartyTheme').value.trim();
+    const theme_id = parseInt(document.getElementById('createPartyTheme').value.trim());
 
     // check that all of the above constants have values and/or a 'checked' status
     if(!(title && startdate && (ispublic || ispublicfalse) && (isover21 || isover21false) && theme_id)) {
         alert('Please ensure you are inputting a value for every field, or selecting an option in every case.');
         return;
     }
-
+    // console.log(typeof title, typeof startdate, typeof ispublic, typeof isover21, typeof theme_id);
+    
     // Once we confirm we have values for all the fields in create-a-party modal,
     // make fetch() POST request to /api/parties/ to create a new party record
     const response = await fetch('/api/parties', {
