@@ -5,9 +5,9 @@
     box-sizing: border-box;
 } 
 
-/*html, body {
-    height: 100%
-}*/
+html, body {
+    height: 100%;
+}
 
 .homepage-navbar {
     /* background-image: url('../images/housepartyhero.jpeg'); */
@@ -17,21 +17,16 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    position: sticky;
-    position: -webkit-sticky;
-    top: 0;
-    z-index: 9999;
-  }
-
+}
 
 .app-name {
-      font-size: 68px;
-      font-weight: bold;
-      color: #FAC710;
+    font-size: 4em;
+    font-weight: bold;
+    color: #FAC710;
 }
 
 .enter-btn {
-    font-size: 18px;
+    font-size: 1.1em;
     font-weight: bold;
     border-width: 0;
     box-shadow: 0px 0px 5px #92834d;
@@ -51,15 +46,15 @@
 #hero-frame {
     background-image: url('../images/housepartyhero.jpeg');
     background-size: cover;
-    justify-content: center;
-    display: flex;
-    opacity: .90;
-    align-items: flex-start;
-    background-attachment: fixed;
-    flex-wrap: wrap;
-    background-position: 80%;
-    min-height: 100%;
-
+    height: 100%;
+    background-position: 10% 25%;
+    /* justify-content: center; */
+    /* display: flex; */
+    /* opacity: .90; */
+    /* align-items: flex-start; */
+    /* background-attachment: fixed; */
+    /* flex-wrap: wrap; */
+    /* background-position: 10%; */
 }
 
 .app-slogan {
@@ -73,10 +68,10 @@
 }
 
 footer {
-    background-color: yellow;
+    background-color: #FAC710;
 }
 
-/*.footer, .push {
-    height: 50px;
-}*/
-
+footer p {
+    text-align: center;
+    font-size: 2em;
+}
