@@ -5,54 +5,73 @@
     box-sizing: border-box;
 } 
 
+html, body {
+    height: 100%;
+}
+
 .homepage-navbar {
+    /* background-image: url('../images/housepartyhero.jpeg'); */
+    background-color: black;
+    background-size: cover;
     padding: 10px 35px; 
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    position: sticky;
-    position: -webkit-sticky;
-    top: 0;
-    z-index: 9999;
-  }
-
+}
 
 .app-name {
-      font-size: 68px;
-      font-weight: bold;
-      color: #FAC710;
-}
-
-#hero-frame img {
-    background-size: cover;
-    display: flex;
-    opacity: .90;
-    background-attachment: absolute top;
-    flex-wrap: wrap;
-    background-position: 100%;
-}
-
-footer {
-    display: flex;
-    /* background-color: black; */
-    width: 100%;
-    padding: 25px 35px;
-    justify-content: space-between;
-    /* position: static; */
-    position: sticky;
-    position: -webkit-sticky;
-    top: 0;
-    z-index: 9999;
+    font-size: 4em;
+    font-weight: bold;
+    color: #FAC710;
 }
 
 .enter-btn {
-    font-size: 18px;
+    font-size: 1.1em;
     font-weight: bold;
     border-width: 0;
     box-shadow: 0px 0px 5px #92834d;
     background-color: #FAC710;
     background-image: linear-gradient(135deg, #ecc344 0%, #b3811e 100%);
-    padding: 15px;
+    padding: 5px;
     border-radius: 30px;
-    color: #472352;
+    color: black;
+}
+
+/* .welcome-banner {
+    background-image: url('../images/housepartyhero2.jpg');
+    background-size: cover;
+    display: flex;
+} */
+
+#hero-frame {
+    background-image: url('../images/housepartyhero.jpeg');
+    background-size: cover;
+    height: 100%;
+    background-position: 10% 25%;
+    /* justify-content: center; */
+    /* display: flex; */
+    /* opacity: .90; */
+    /* align-items: flex-start; */
+    /* background-attachment: fixed; */
+    /* flex-wrap: wrap; */
+    /* background-position: 10%; */
+}
+
+.app-slogan {
+    font-size: 68px;
+    display: flex;
+    align-items: center;
+}
+
+.app-slogan h1 {
+    color: #FAC710;
+}
+
+footer {
+    background-color: #FAC710;
+}
+
+footer p {
+    text-align: center;
+    font-size: 2em;
 }
