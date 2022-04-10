@@ -88,6 +88,7 @@ router.get('/search/:ispublic/:isover21/:theme_id', async (req, res) => {
 
   const ispublic = req.params.ispublic === "true";
   const isover21 = req.params.isover21 === "true";
+  const theme_id = parseInt(req.params.theme_id);
 
   if(req.session.loggedIn) {
     // Access our Party model and run .findAll() method
@@ -96,7 +97,7 @@ router.get('/search/:ispublic/:isover21/:theme_id', async (req, res) => {
       where: {
         ispublic: ispublic,
         isover21: isover21,
-        theme_id: req.params.theme_id
+        theme_id: theme_id
       },
       include: [
         {

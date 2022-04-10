@@ -13,41 +13,7 @@ const submitCreateParty = document.getElementById('submitCreateParty');
 const submitSearchParty = document.getElementById('submitSearchParty');
 const modalCancelBtn = document.getElementById('modalCancelBtn');
 const searchModalCancelBtn = document.getElementById('searchModalCancelBtn');
-const cancelBtns = document.querySelectorAll('.cancel-button');
 const myAccountBtn = document.querySelector('.my-account');
-
-// handle the user searching for parties
-async function searchPartyHandler(event) {
-    event.preventDefault();
-    // get the values from the modal inputs, radio buttons, etc
-    const ispublic = document.getElementById('searchPartyPublic').checked;
-    const ispublicfalse = document.getElementById('searchPartyPrivate').checked;
-    const isover21 = document.getElementById('searchIsOver21True').checked;
-    const isover21false = document.getElementById('searchIsOver21False').checked;
-    const theme_id = document.getElementById('searchPartyTheme').value.trim();
-    const searchDistance = document.getElementById('searchPartyDistance').value.trim();
-
-    // check that there is at least one qualifying condition from the above constants
-    if(!(( ispublic || ispublicfalse ) && (isover21 || isover21false ) && theme_id)) {
-        alert('Please ensure you are inputting a value for public/private, age minimum, and party theme.');
-        return;
-    }
-    // console.log(ispublic, ispublicAll, isover21, isover21false, theme_id, searchDistance);
-    
-    const response = await fetch(`/search/${ispublic}/${isover21}/${theme_id}`, {
-        method: 'get',
-        headers: { 'Content-Type': 'application/json' }
-    });
-
-    if(response.ok) {
-        // alert('Your search is successfull!');
-        searchModal.classList.remove('is-active');
-        // after the modal is removed, refresh the page to show the search results
-        document.location.replace(`/search/${ispublic}/${isover21}/${theme_id}`);
-    } else {
-        alert(response.statusText);
-    }
-}
 
 // handle the user submitting a new party
 async function createPartyHandler(event) {
@@ -92,6 +58,39 @@ async function createPartyHandler(event) {
     }
 }
 
+// handle the user searching for parties
+async function searchPartyHandler(event) {
+    event.preventDefault();
+    // get the values from the modal inputs, radio buttons, etc
+    const ispublic = document.getElementById('searchPartyPublic').checked;
+    const ispublicfalse = document.getElementById('searchPartyPrivate').checked;
+    const isover21 = document.getElementById('searchIsOver21True').checked;
+    const isover21false = document.getElementById('searchIsOver21False').checked;
+    const theme_id = document.getElementById('searchPartyTheme').value.trim();
+    const searchDistance = document.getElementById('searchPartyDistance').value.trim();
+
+    // check that there is at least one qualifying condition from the above constants
+    if(!(( ispublic || ispublicfalse ) && (isover21 || isover21false ) && theme_id)) {
+        alert('Please ensure you are inputting a value for public/private, age minimum, and party theme.');
+        return;
+    }
+    // console.log(ispublic, ispublicAll, isover21, isover21false, theme_id, searchDistance);
+    
+    const response = await fetch(`/search/${ispublic}/${isover21}/${theme_id}`, {
+        method: 'get',
+        headers: { 'Content-Type': 'application/json' }
+    });
+
+    if(response.ok) {
+        // alert('Your search is successfull!');
+        searchModal.classList.remove('is-active');
+        // after the modal is removed, refresh the page to show the search results
+        document.location.replace(`/search/${ispublic}/${isover21}/${theme_id}`);
+    } else {
+        alert(response.statusText);
+    }
+}
+
 toggleButton.addEventListener('click', () => {
     navbarLinks.classList.toggle('active')
 });
@@ -101,6 +100,7 @@ searchParty.addEventListener('click', () => {
     searchModal.classList.add('is-active')
     searchModalBackground.classList.add('is-active');
 });
+
 // make Create Modal appear when its button is clicked in nav bar
 createPartyBtn.addEventListener('click', () => {
     modal.classList.add('is-active')
@@ -111,6 +111,7 @@ createPartyBtn.addEventListener('click', () => {
 modalClose.addEventListener('click', () => {
     modal.classList.remove('is-active');
 });
+
 // close out of search modal
 searchClose.addEventListener('click', () => {
     searchModal.classList.remove('is-active');
