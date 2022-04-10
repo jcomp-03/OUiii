@@ -58,7 +58,9 @@
     background-attachment: fixed;
     flex-wrap: wrap;
     background-position: 80%;
-    min-height: 100%
+    min-height: 100%;
+
+}
 
 .app-slogan {
     font-size: 68px;
