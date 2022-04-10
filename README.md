@@ -46,7 +46,7 @@ N/A
 * Helps to Organize and Advertise Parties that user creates.
 
 
-### URL of the deployed application (GitHub Pages):
+### URL of the deployed application (Heroku):
 <https://ouiii-party.herokuapp.com/​.git>
 
 ### URL of the GitHub repository:
